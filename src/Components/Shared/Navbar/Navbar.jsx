@@ -82,10 +82,10 @@ const NavBar = () => {
       <NavLink onClick={toggleMenuDropdown} to="/">
         <span>Home</span>
       </NavLink>
-      <NavLink onClick={toggleMenuDropdown}>
+      <NavLink onClick={toggleMenuDropdown} to={"/all-artifacts"}>
         <span>All Artifacts</span>
       </NavLink>
-      <NavLink onClick={toggleMenuDropdown}>
+      <NavLink onClick={toggleMenuDropdown} to={"/add-artifact"}>
         <span>Add Artifacts</span>
       </NavLink>
       {user && (
