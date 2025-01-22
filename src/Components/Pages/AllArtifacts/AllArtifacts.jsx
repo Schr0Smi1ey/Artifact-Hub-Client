@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { Helmet } from "react-helmet";
-import { HashLoader } from "react-spinners";
+import { BounceLoader } from "react-spinners";
 import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 import Artifact from "../../Cards/Artifact";
 
@@ -54,7 +54,7 @@ const AllArtifacts = () => {
 
       {loading ? (
         <div className="flex items-center justify-center min-h-screen">
-          <HashLoader color="#387478" size={110} />
+          <BounceLoader color="#387478" size={110} />
         </div>
       ) : filteredArtifacts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

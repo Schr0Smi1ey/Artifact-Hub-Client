@@ -7,7 +7,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import "aos/dist/aos.css";
 import Aos from "aos";
-import { HashLoader } from "react-spinners";
+import { BounceLoader } from "react-spinners";
 
 const MyArtifacts = () => {
   const { user, Toast, theme } = useContext(AuthContext);
@@ -159,7 +159,7 @@ const MyArtifacts = () => {
 
       {loading ? (
         <div className="flex items-center justify-center min-h-screen">
-          <HashLoader color="#387478" size={110} />
+          <BounceLoader color="#387478" size={110} />
         </div>
       ) : (
         <div>

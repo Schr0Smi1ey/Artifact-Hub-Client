@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { HashLoader } from "react-spinners";
+import { BounceLoader } from "react-spinners";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext/AuthProvider";
 
@@ -21,7 +21,7 @@ const PrivateRoute = ({ children }) => {
   if (loading || (!user && !isRedirecting)) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <HashLoader color="#387478" size={110} />
+        <BounceLoader color="#387478" size={110} />
       </div>
     );
   }

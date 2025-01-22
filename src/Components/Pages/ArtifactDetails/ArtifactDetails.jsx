@@ -2,14 +2,16 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 import { Helmet } from "react-helmet";
-import { HashLoader } from "react-spinners";
+import { BounceLoader } from "react-spinners";
+import { FaHeart, FaRegHeart } from "react-icons/fa"; // For Love/Dislike Icons
 
 const ArtifactDetails = () => {
   const { id } = useParams();
-  const { Toast } = useContext(AuthContext);
+  const { Toast, theme, user } = useContext(AuthContext);
   const [artifact, setArtifact] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [likeCount, setLikeCount] = useState(artifact);
+  const [likeCount, setLikeCount] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3000/Artifacts/${id}`)
@@ -17,25 +19,39 @@ const ArtifactDetails = () => {
       .then((data) => {
         setArtifact(data);
         setLikeCount(data.likeCount || 0);
+        fetch(
+          `http://localhost:3000/check-like-status/${id}?user_email=${user.email}`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setIsLiked(data.isLiked);
+          });
       })
       .catch((error) => Toast(error.message, "error"))
       .finally(() => setLoading(false));
-  }, [id, Toast]);
+  }, []);
 
-  const handleLike = () => {
-    const updatedLikeCount = likeCount + 1;
+  const handleLikeToggle = () => {
+    const updatedLikeCount = isLiked ? likeCount - 1 : likeCount + 1;
+    const updatedIsLiked = !isLiked;
 
-    fetch(`http://localhost:3000/Artifacts/${id}`, {
+    fetch(`http://localhost:3000/toggle-like/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ likeCount: updatedLikeCount }),
+      body: JSON.stringify({
+        user_email: user.email,
+      }),
     })
       .then((response) => response.json())
       .then(() => {
         setLikeCount(updatedLikeCount);
-        Toast("Liked successfully!", "success");
+        setIsLiked(updatedIsLiked);
+        Toast(
+          updatedIsLiked ? "Liked!" : "Disliked!",
+          updatedIsLiked ? "success" : "warning"
+        );
       })
       .catch((error) => Toast(error.message, "error"));
   };
@@ -43,55 +59,81 @@ const ArtifactDetails = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <HashLoader color="#387478" size={110} />
+        <BounceLoader color="#387478" size={110} />
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div
+      className={`container mx-auto px-4 py-8 ${
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-gray-900"
+      }`}
+    >
       <Helmet>
         <title>{artifact.artifactName} | Artifact Details</title>
       </Helmet>
-      <img
-        src={artifact.artifactImage}
-        alt={artifact.artifactName}
-        className="rounded-lg shadow-md w-full max-w-lg mx-auto mb-6"
-      />
-      <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+
+      {/* Artifact Image */}
+      <div className="text-center mb-8 relative group">
+        <img
+          src={artifact.artifactImage}
+          alt={artifact.artifactName}
+          className="rounded-lg shadow-2xl transition-transform transform group-hover:scale-105 w-full max-w-lg mx-auto"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black opacity-30 rounded-lg"></div>
+      </div>
+
+      {/* Artifact Info */}
+      <div
+        className={`bg-${
+          theme === "dark" ? "gray-800" : "gray-100"
+        } p-8 rounded-lg shadow-lg`}
+      >
+        <h1 className="text-5xl font-extrabold mb-6 text-center text-primary">
           {artifact.artifactName}
         </h1>
-        <p>
-          <strong>Artifact Type:</strong> {artifact.artifactType}
-        </p>
-        <p>
-          <strong>Historical Context:</strong> {artifact.historicalContext}
-        </p>
-        <p>
-          <strong>Created At:</strong> {artifact.createdAt}
-        </p>
-        <p>
-          <strong>Discovered At:</strong> {artifact.discoveredAt}
-        </p>
-        <p>
-          <strong>Discovered By:</strong> {artifact.discoveredBy}
-        </p>
-        <p>
-          <strong>Present Location:</strong> {artifact.presentLocation}
-        </p>
-        <p>
-          <strong>Added By:</strong> {artifact.adderName} ({artifact.adderEmail}
-          )
-        </p>
-        <div className="flex items-center mt-6">
+
+        <div className="space-y-6 text-lg font-medium">
+          <p>
+            <strong>Artifact Type:</strong> {artifact.artifactType}
+          </p>
+          <p>
+            <strong>Historical Context:</strong> {artifact.historicalContext}
+          </p>
+          <p>
+            <strong>Created At:</strong> {artifact.createdAt}
+          </p>
+          <p>
+            <strong>Discovered At:</strong> {artifact.discoveredAt}
+          </p>
+          <p>
+            <strong>Discovered By:</strong> {artifact.discoveredBy}
+          </p>
+          <p>
+            <strong>Present Location:</strong> {artifact.presentLocation}
+          </p>
+          <p>
+            <strong>Added By:</strong> {artifact.adderName} (
+            {artifact.adderEmail})
+          </p>
+        </div>
+
+        {/* Like/Dislike Section */}
+        <div className="flex items-center justify-center mt-6 space-x-6">
           <button
-            onClick={handleLike}
-            className="btn btn-primary px-6 py-2 rounded-lg shadow-md"
+            onClick={handleLikeToggle}
+            className={`text-4xl transition-all duration-300 transform ${
+              isLiked ? "text-red-500" : "text-gray-600"
+            } hover:scale-110 hover:text-red-600`}
           >
-            Like
+            {isLiked ? (
+              <FaHeart className="block" />
+            ) : (
+              <FaRegHeart className="block" />
+            )}
           </button>
-          <p className="ml-4 text-xl">
+          <p className="text-2xl font-semibold">
             {likeCount} {likeCount === 1 ? "Like" : "Likes"}
           </p>
         </div>

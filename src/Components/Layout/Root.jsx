@@ -4,14 +4,15 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 import { useContext } from "react";
-import { HashLoader } from "react-spinners";
+import { BounceLoader } from "react-spinners";
+import Footer from "../Shared/Footer/Footer";
 
 const Root = () => {
   const { loading } = useContext(AuthContext);
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <HashLoader color="#387478" size={110} />
+        <BounceLoader color="#387478" size={110} />
       </div>
     );
   }
@@ -21,6 +22,7 @@ const Root = () => {
       <div className="my-32">
         <Outlet></Outlet>
       </div>
+      <Footer></Footer>
       <ToastContainer />
     </div>
   );
