@@ -12,6 +12,7 @@ import AllArtifacts from "./Components/Pages/AllArtifacts/AllArtifacts";
 import ArtifactDetails from "./Components/Pages/ArtifactDetails/ArtifactDetails";
 import AddArtifact from "./Components/Forms/AddArtifact";
 import MyArtifacts from "./Components/Pages/MyArtifacts/MyArtifacts";
+import PrivateRoute from "./ProtectedRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -29,17 +30,29 @@ const router = createBrowserRouter([
       },
       {
         path: "/artifact-details/:id",
-        element: <ArtifactDetails></ArtifactDetails>,
+        element: (
+          <PrivateRoute>
+            <ArtifactDetails></ArtifactDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/Artifacts/${params.id}`),
       },
       {
         path: "/add-artifact",
-        element: <AddArtifact></AddArtifact>,
+        element: (
+          <PrivateRoute>
+            <AddArtifact></AddArtifact>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-artifact",
-        element: <MyArtifacts></MyArtifacts>,
+        element: (
+          <PrivateRoute>
+            <MyArtifacts></MyArtifacts>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

@@ -71,7 +71,6 @@ const MyArtifacts = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const updatedArtifact = { ...artifactData };
-    console.log(updatedArtifact);
     fetch(`http://localhost:3000/Artifacts/${selectedArtifact._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

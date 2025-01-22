@@ -81,12 +81,12 @@ const Artifact = ({ artifact }) => {
 };
 Artifact.propTypes = {
   artifact: PropTypes.shape({
-    artifactName: PropTypes.string.isRequired,
-    artifactImage: PropTypes.string.isRequired,
-    historicalContext: PropTypes.string.isRequired,
-    likeCount: PropTypes.number.isRequired,
-    presentLocation: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
+    artifactName: PropTypes.string,
+    artifactImage: PropTypes.string,
+    historicalContext: PropTypes.string,
+    likeCount: PropTypes.number,
+    presentLocation: PropTypes.string,
+    _id: PropTypes.string,
   }).isRequired,
 };
 
