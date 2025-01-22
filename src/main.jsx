@@ -10,6 +10,7 @@ import SignUp from "./Components/Forms/SignUp";
 import Home from "./Components/Pages/Home/Home";
 import AllArtifacts from "./Components/Pages/AllArtifacts/AllArtifacts";
 import ArtifactDetails from "./Components/Pages/ArtifactDetails/ArtifactDetails";
+import AddArtifact from "./Components/Forms/AddArtifact";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         element: <ArtifactDetails></ArtifactDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/Artifacts/${params.id}`),
+      },
+      {
+        path: "/add-artifact",
+        element: <AddArtifact></AddArtifact>,
       },
       {
         path: "/login",

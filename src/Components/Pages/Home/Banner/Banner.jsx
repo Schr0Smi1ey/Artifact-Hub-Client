@@ -130,7 +130,7 @@ const Banner = () => {
                     navigate(
                       buttonText === "Get Started" && !user
                         ? "/signup"
-                        : "/all-visas"
+                        : "/all-artifact"
                     )
                   }
                   className="btn bg-primary/90 hover:bg-white hover:text-black hover:border-2 hover:border-primary font-semibold text-lg text-white"

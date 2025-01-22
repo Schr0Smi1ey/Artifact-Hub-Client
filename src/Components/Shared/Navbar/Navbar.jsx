@@ -134,7 +134,7 @@ const NavBar = () => {
                 </h3>
               </li>
               <li className="hover:bg-gradient-to-t hover:from-green-200 hover:to-green-100">
-                <Link onClick={toggleMenuDropdown}>
+                <Link onClick={toggleMenuDropdown} to={"/my-artifact"}>
                   <span className="justify-between flex font-bold text-base w-fit">
                     My Artifacts
                   </span>
