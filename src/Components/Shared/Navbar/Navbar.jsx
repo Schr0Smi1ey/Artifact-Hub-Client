@@ -141,7 +141,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="hover:bg-gradient-to-t hover:from-green-200 hover:to-green-100">
-                <Link onClick={toggleMenuDropdown}>
+                <Link onClick={toggleMenuDropdown} to="/my-liked-artifact">
                   <span className="justify-between flex font-bold text-base w-fit">
                     Liked Artifacts
                   </span>

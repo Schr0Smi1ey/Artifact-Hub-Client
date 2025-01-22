@@ -68,8 +68,8 @@ const Artifact = ({ artifact }) => {
             to={`/artifact-details/${artifact._id}`}
             className={`block text-center text-sm px-4 py-2 rounded-md font-medium transition ${
               theme === "dark"
-                ? "bg-green-600 hover:bg-green-700 text-white"
-                : "bg-green-500 hover:bg-green-600 text-white"
+                ? "bg-primary text-white"
+                : "bg-primary text-white"
             }`}
           >
             See Details

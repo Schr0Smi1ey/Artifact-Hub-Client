@@ -49,7 +49,7 @@ const FeaturedArtifacts = () => {
       <div className="text-center mt-8">
         <button
           onClick={() => navigate("/all-artifacts")}
-          className="px-6 py-3 rounded-lg font-semibold text-lg transition-transform transform hover:scale-105 bg-green-500 hover:bg-green-600 text-white"
+          className="px-6 py-3 rounded-lg font-semibold text-lg transition-transform transform hover:scale-105 bg-primary text-white"
         >
           See All Artifacts
         </button>

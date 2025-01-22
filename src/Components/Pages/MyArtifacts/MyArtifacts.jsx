@@ -159,7 +159,7 @@ const MyArtifacts = () => {
 
       {loading ? (
         <div className="flex items-center justify-center min-h-screen">
-          <BounceLoader color="#387478" size={110} />
+          <BounceLoader color="#fb9c28" size={110} />
         </div>
       ) : (
         <div>
