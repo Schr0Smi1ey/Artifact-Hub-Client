@@ -16,8 +16,8 @@ const AddArtifact = () => {
     discoveredAt: "",
     discoveredBy: "",
     presentLocation: "",
-    adderName: user.displayName,
-    addedBy: user.email,
+    adderName: user?.displayName,
+    addedBy: user?.email,
     likeCount: 0,
   });
 

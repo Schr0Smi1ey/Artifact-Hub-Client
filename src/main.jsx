@@ -11,6 +11,7 @@ import Home from "./Components/Pages/Home/Home";
 import AllArtifacts from "./Components/Pages/AllArtifacts/AllArtifacts";
 import ArtifactDetails from "./Components/Pages/ArtifactDetails/ArtifactDetails";
 import AddArtifact from "./Components/Forms/AddArtifact";
+import MyArtifacts from "./Components/Pages/MyArtifacts/MyArtifacts";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/add-artifact",
         element: <AddArtifact></AddArtifact>,
+      },
+      {
+        path: "/my-artifact",
+        element: <MyArtifacts></MyArtifacts>,
       },
       {
         path: "/login",
