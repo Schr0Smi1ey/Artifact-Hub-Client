@@ -8,6 +8,7 @@ import "sweetalert2/src/sweetalert2.scss";
 import "aos/dist/aos.css";
 import Aos from "aos";
 import { BounceLoader } from "react-spinners";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const MyArtifacts = () => {
   const { user, Toast, theme } = useContext(AuthContext);
@@ -25,24 +26,18 @@ const MyArtifacts = () => {
     discoveredBy: "",
     presentLocation: "",
   });
-
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 500 });
   }, [artifacts]);
-
   useEffect(() => {
-    fetch(`http://localhost:3000/Artifacts`)
-      .then((response) => response.json())
-      .then((data) => {
-        const userArtifacts = data.filter(
-          (artifact) => artifact.addedBy === user?.email
-        );
-        setArtifacts(userArtifacts);
-      })
+    axiosSecure
+      .get(`http://localhost:3000/my-artifacts?addedBy=${user?.email}`)
+      .then((res) => setArtifacts(res.data))
       .catch((error) => Toast(error.message, "error"))
       .finally(() => setLoading(false));
-  }, [user, Toast]);
+  }, [Toast, user?.email, axiosSecure]);
 
   let filteredArtifacts = artifacts.filter((artifact) =>
     artifact.artifactName.toLowerCase().includes(searchTerm.toLowerCase())

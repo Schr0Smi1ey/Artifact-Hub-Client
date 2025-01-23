@@ -3,22 +3,24 @@ import { Helmet } from "react-helmet";
 import { BounceLoader } from "react-spinners";
 import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 import Artifact from "../../Cards/Artifact";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const MyLikedArtifacts = () => {
   const [likedArtifacts, setLikedArtifacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { theme, Toast, user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch(`http://localhost:3000/liked-artifacts?user_email=${user.email}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setLikedArtifacts(data);
-      })
+  }, []);
+  useEffect(() => {
+    axiosSecure
+      .get(`http://localhost:3000/liked-artifacts?user_email=${user.email}`)
+      .then((res) => setLikedArtifacts(res.data))
       .catch((error) => Toast(error.message, "error"))
       .finally(() => setLoading(false));
-  }, [Toast, user.email]);
+  }, [user.email, Toast, axiosSecure]);
 
   return (
     <div

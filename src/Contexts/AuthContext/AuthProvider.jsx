@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../API/firebase.init.js";
 import { toast, Flip } from "react-toastify";
+import axios from "axios";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
@@ -23,6 +24,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -30,7 +32,25 @@ const AuthProvider = ({ children }) => {
       } else {
         setUser(null);
       }
-      setLoading(false);
+      console.log("State Captured", user?.email);
+      if (user?.email) {
+        const currentUser = { email: user.email };
+        axios
+          .post("http://localhost:3000/jwt", currentUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+            setLoading(false);
+          });
+      } else {
+        axios
+          .post("http://localhost:3000/logout", {}, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+            setLoading(false);
+          });
+      }
     });
     return () => unsubscribe();
   }, []);

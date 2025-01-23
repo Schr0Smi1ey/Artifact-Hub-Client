@@ -20,7 +20,7 @@ const AllArtifacts = () => {
   }, []);
 
   const filteredArtifacts = artifacts.filter((artifact) =>
-    artifact.artifactName.toLowerCase().includes(searchQuery.toLowerCase())
+    artifact?.artifactName?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
