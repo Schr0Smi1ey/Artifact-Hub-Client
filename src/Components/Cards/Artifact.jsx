@@ -15,6 +15,7 @@ const Artifact = ({ artifact }) => {
     likeCount,
     presentLocation,
   } = artifact;
+  // eslint-disable-next-line no-unused-vars
   const { theme } = useContext(AuthContext);
 
   useEffect(() => {
@@ -23,11 +24,7 @@ const Artifact = ({ artifact }) => {
 
   return (
     <div
-      className={`shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105 ${
-        theme === "dark"
-          ? "bg-gray-800 text-gray-200"
-          : "bg-white text-gray-900"
-      }`}
+      className={`shadow-md rounded-lg bg-black overflow-hidden transition-transform transform hover:scale-105`}
       data-aos="fade-up"
     >
       {/* Artifact Image */}
@@ -41,11 +38,11 @@ const Artifact = ({ artifact }) => {
       {/* Card Content */}
       <div className="p-4 flex flex-col">
         {/* Title */}
-        <h3 className="text-lg font-semibold mb-2 truncate">{artifactName}</h3>
+        <h3 className="text-xl font-bold mb-2 truncate">{artifactName}</h3>
 
         <div className="flex-grow">
           {/* Historical Context */}
-          <p className="text-sm mb-4 text-gray-600 dark:text-gray-400">
+          <p className="text-base text-gray-400 mb-4 ">
             {historicalContext.length > 100
               ? `${historicalContext.slice(0, 100)}...`
               : historicalContext}
@@ -54,23 +51,19 @@ const Artifact = ({ artifact }) => {
           {/* Location and Like Count */}
           <div className="flex justify-between items-center text-sm mb-4">
             <div className="flex items-center gap-2">
-              <MdOutlineLocationOn className="text-blue-500 text-xl" />
-              <span>{presentLocation}</span>
+              <MdOutlineLocationOn className="text-blue-500 text-2xl" />
+              <span className="text-gray-300">{presentLocation}</span>
             </div>
             <div className="flex items-center gap-2">
-              <FiHeart className="text-red-500 text-xl" />
-              <span>{likeCount} Likes</span>
+              <FiHeart className="text-red-500 text-2xl" />
+              <span className="text-gray-300">{likeCount} Likes</span>
             </div>
           </div>
         </div>
         <div className="p-4">
           <Link
             to={`/artifact-details/${artifact._id}`}
-            className={`block text-center text-sm px-4 py-2 rounded-md font-medium transition ${
-              theme === "dark"
-                ? "bg-primary text-white"
-                : "bg-primary text-white"
-            }`}
+            className={`block text-center text-sm px-4 py-2 rounded-md font-medium transition bg-primary text-white`}
           >
             See Details
           </Link>
