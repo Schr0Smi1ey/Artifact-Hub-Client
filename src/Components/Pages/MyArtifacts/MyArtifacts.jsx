@@ -122,7 +122,7 @@ const MyArtifacts = () => {
     <div
       className={`container ${
         theme === "dark" ? "text-white" : "text-black"
-      } mx-auto px-4`}
+      } mx-auto px-4 py-32 md:py-40 lg:py-52`}
     >
       <Helmet>
         <title>Artifact-Hub | My-Artifacts</title>

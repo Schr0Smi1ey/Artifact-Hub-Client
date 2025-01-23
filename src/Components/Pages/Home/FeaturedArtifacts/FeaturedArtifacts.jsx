@@ -22,39 +22,45 @@ const FeaturedArtifacts = () => {
   }, [Toast, customAxios]);
 
   return (
-    <section
-      className={`container mx-auto my-10 px-4 ${
-        theme === "dark" ? "text-white" : "text-black"
-      }`}
-    >
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-6">
-        Discover Rare Historical Artifacts 🏺✨
-      </h2>
-      <p
-        className={`text-lg md:text-xl text-center ${
-          theme === "dark" ? "text-gray-400" : "text-gray-600"
-        } w-[90%] sm:w-[80%] md:w-[55%] mx-auto mb-8`}
+    <div className={`${theme === "dark" ? "bg-white" : "bg-black"}`}>
+      <section
+        className={`container mx-auto pt-[5%] pb-[15%] px-4 ${
+          theme === "dark" ? "text-white" : "text-black"
+        }`}
       >
-        Unearth the stories of the past through rare and valuable artifacts from
-        ancient civilizations. Explore, learn, and marvel at these timeless
-        treasures.
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {artifacts.map((artifact) => (
-          <Artifact key={artifact._id} artifact={artifact} />
-        ))}
-      </div>
-
-      <div className="text-center mt-8">
-        <button
-          onClick={() => navigate("/all-artifacts")}
-          className="px-6 py-3 rounded-lg font-semibold text-lg transition-transform transform hover:scale-105 bg-primary text-white"
+        <h2
+          className={`text-3xl md:text-4xl ${
+            theme === "dark" ? "text-black" : "text-white"
+          } lg:text-5xl font-extrabold text-center mb-6`}
         >
-          See All Artifacts
-        </button>
-      </div>
-    </section>
+          Discover Rare Historical Artifacts 🏺✨
+        </h2>
+        <p
+          className={`text-lg md:text-xl text-center ${
+            theme === "dark" ? "text-black" : "text-white"
+          } w-[90%] sm:w-[80%] md:w-[55%] mx-auto mb-8`}
+        >
+          Unearth the stories of the past through rare and valuable artifacts
+          from ancient civilizations. Explore, learn, and marvel at these
+          timeless treasures.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {artifacts.map((artifact) => (
+            <Artifact key={artifact._id} artifact={artifact} />
+          ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <button
+            onClick={() => navigate("/all-artifacts")}
+            className="px-6 py-3 rounded-lg font-semibold text-lg transition-transform transform hover:scale-105 bg-primary text-white"
+          >
+            See All Artifacts
+          </button>
+        </div>
+      </section>
+    </div>
   );
 };
 

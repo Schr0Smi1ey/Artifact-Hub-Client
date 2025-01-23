@@ -16,6 +16,10 @@ const ArtifactDetails = () => {
   const [isLiked, setIsLiked] = useState(false);
   const customAxios = useCustomAxios();
   const secureAxios = useAxiosSecure();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   useEffect(() => {
     customAxios(`/Artifacts/${id}`)
       .then((res) => {

@@ -19,7 +19,7 @@ const Root = () => {
   return (
     <div className="overflow-x-hidden">
       <Navbar></Navbar>
-      <div className="my-32">
+      <div>
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

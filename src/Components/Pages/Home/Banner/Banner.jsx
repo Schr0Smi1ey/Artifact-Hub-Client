@@ -56,11 +56,14 @@ const Banner = () => {
   ];
 
   const { user, theme } = useContext(AuthContext);
+  const [color, setColor] = useState(theme === "dark" ? "#ffffff" : "#000000");
+  console.log(color);
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   useEffect(() => {
     AOS.init({ duration: 500 });
-  }, []);
+    setColor(theme === "dark" ? "#ffffff" : "#000000");
+  }, [theme]);
   const goToPreviousSlide = () => {
     setCurrentSlide(
       (prev) => (prev - 1 + sliderContent.length) % sliderContent.length
@@ -76,92 +79,111 @@ const Banner = () => {
 
   return (
     <section
-      className={`md:container mx-auto my-5 ${
+      className={`relative ${
+        theme === "dark" ? "bg-black" : "bg-white"
+      } text-white mx-auto pb-[5%] ${
         theme == "dark" ? "text-white" : "text-black"
       }`}
     >
-      <div className="carousel w-full">
-        <div
-          key={id}
-          className={`carousel-item relative w-full`}
-          data-aos="fade-down"
-          data-aos-duration="1000"
-        >
+      <svg
+        className="absolute w-full z-30 bottom-[-1%] lg:bottom-[-2%] xl:bottom-[-3%] text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 170.68 1440 149.32"
+      >
+        <path
+          fill={color}
+          fillOpacity="1"
+          d="M0,288L80,282.7C160,277,320,267,480,240C640,213,800,171,960,170.7C1120,171,1280,213,1360,234.7L1440,256L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+        ></path>
+      </svg>
+      <div className="container mx-auto py-32 z-0">
+        <div className="carousel w-full">
           <div
-            className={`w-full md:p-10 md:px-16 lg:px-28 flex justify-center items-center`}
+            key={id}
+            className={`carousel-item relative w-full`}
+            data-aos="fade-down"
+            data-aos-duration="1000"
           >
-            <div className="text-center md:text-left flex flex-col items-center md:flex-row">
-              <div className="flex justify-center items-center md:w-4/6 lg:w-3/6">
-                <img
-                  src={imgSrc}
-                  alt={`Slide ${id}`}
-                  className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] rounded-full hover:scale-105 border-4 border-primary p-2"
-                  data-aos="zoom-in"
-                  data-aos-duration="800"
-                />
+            <div
+              className={`w-full md:p-10 md:px-16 lg:px-28 flex justify-center items-center`}
+            >
+              <div className="text-center md:text-left flex flex-col items-center md:flex-row">
+                <div className="flex justify-center items-center md:w-4/6 lg:w-3/6">
+                  <img
+                    src={imgSrc}
+                    alt={`Slide ${id}`}
+                    className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] rounded-full hover:scale-105 border-4 border-primary p-2"
+                    data-aos="zoom-in"
+                    data-aos-duration="800"
+                  />
+                </div>
+                <div className="w-4/6 mb-4 mt-4 md:mt-0 md:ml-4 lg:ml-6">
+                  <h1 data-aos="fade-left">
+                    <Slide direction="right">
+                      <h1
+                        className={`font-bold ${
+                          theme === "dark" ? "text-white" : "text-black"
+                        } text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-5`}
+                      >
+                        <Typewriter
+                          words={[title]}
+                          loop={1}
+                          cursor
+                          cursorStyle=""
+                          typeSpeed={70}
+                          deleteSpeed={50}
+                          delaySpeed={800}
+                        />
+                      </h1>
+                    </Slide>
+                  </h1>
+                  <p
+                    className={`font-normal ${
+                      theme == "dark" ? "text-gray-200" : "text-gray-600"
+                    } mb-6`}
+                    data-aos="fade-left"
+                    data-aos-delay="200"
+                  >
+                    {description}
+                  </p>
+                  <button
+                    onClick={() =>
+                      navigate(
+                        buttonText === "Get Started" && !user
+                          ? "/signup"
+                          : "/all-artifact"
+                      )
+                    }
+                    className="btn bg-primary/90 hover:bg-white hover:text-black hover:border-2 hover:border-primary font-semibold text-lg text-white"
+                    data-aos="fade-up"
+                    data-aos-delay="400"
+                    data-aos-duration="1000"
+                  >
+                    {buttonText}
+                  </button>
+                </div>
               </div>
-              <div className="w-4/6 mb-4 mt-4 md:mt-0 md:ml-4 lg:ml-6">
-                <h1 data-aos="fade-left">
-                  <Slide direction="right">
-                    <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-5">
-                      <Typewriter
-                        words={[title]}
-                        loop={1}
-                        cursor
-                        cursorStyle=""
-                        typeSpeed={70}
-                        deleteSpeed={50}
-                        delaySpeed={800}
-                      />
-                    </h1>
-                  </Slide>
-                </h1>
-                <p
-                  className={`font-normal ${
-                    theme == "dark" ? "text-gray-200" : "text-gray-600"
-                  } mb-6`}
-                  data-aos="fade-left"
-                  data-aos-delay="200"
-                >
-                  {description}
-                </p>
+              <div
+                key={id}
+                className="absolute left-2 right-2 md:left-4 md:right-4 lg:left-14 lg:right-14 top-1/2 flex -translate-y-1/2 transform justify-between"
+              >
                 <button
-                  onClick={() =>
-                    navigate(
-                      buttonText === "Get Started" && !user
-                        ? "/signup"
-                        : "/all-artifact"
-                    )
-                  }
-                  className="btn bg-primary/90 hover:bg-white hover:text-black hover:border-2 hover:border-primary font-semibold text-lg text-white"
-                  data-aos="fade-up"
-                  data-aos-delay="400"
-                  data-aos-duration="1000"
+                  onClick={goToPreviousSlide}
+                  className="btn btn-circle bg-white text-lg border-none hover:bg-white"
+                  data-aos="fade-left"
+                  data-aos-duration="800"
                 >
-                  {buttonText}
+                  ❮
+                </button>
+                <button
+                  onClick={goToNextSlide}
+                  className="btn btn-circle bg-white text-lg border-none hover:bg-white"
+                  data-aos="fade-right"
+                  data-aos-duration="800"
+                >
+                  ❯
                 </button>
               </div>
-            </div>
-            <div
-              key={id}
-              className="absolute left-2 right-2 md:left-4 md:right-4 lg:left-14 lg:right-14 top-1/2 flex -translate-y-1/2 transform justify-between"
-            >
-              <button
-                onClick={goToPreviousSlide}
-                className="btn btn-circle bg-white text-lg border-none hover:bg-white"
-                data-aos="fade-left"
-                data-aos-duration="800"
-              >
-                ❮
-              </button>
-              <button
-                onClick={goToNextSlide}
-                className="btn btn-circle bg-white text-lg border-none hover:bg-white"
-                data-aos="fade-right"
-                data-aos-duration="800"
-              >
-                ❯
-              </button>
             </div>
           </div>
         </div>

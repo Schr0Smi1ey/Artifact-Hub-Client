@@ -24,7 +24,7 @@ const MyLikedArtifacts = () => {
 
   return (
     <div
-      className={`min-h-screen container mx-auto px-4 py-8 ${
+      className={`min-h-screen container mx-auto px-4 py-32 md:py-40 lg:py-52 ${
         theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
       }`}
     >

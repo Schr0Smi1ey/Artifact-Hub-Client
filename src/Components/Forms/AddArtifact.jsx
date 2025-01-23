@@ -77,7 +77,7 @@ const AddArtifact = () => {
 
   return (
     <div
-      className={`container mx-auto px-4 py-8 ${
+      className={`container mx-auto px-4 py-32 md:py-40 lg:py-52 ${
         theme === "dark" ? "text-white" : "text-black"
       }`}
     >
