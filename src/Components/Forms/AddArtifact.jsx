@@ -4,9 +4,10 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AddArtifact = () => {
-  const { user, theme } = useContext(AuthContext);
+  const { user, theme, Toast } = useContext(AuthContext);
   const [artifactData, setArtifactData] = useState({
     artifactName: "",
     artifactImage: "",
@@ -20,11 +21,14 @@ const AddArtifact = () => {
     addedBy: user?.email,
     likeCount: 0,
   });
-
+  const secureAxios = useAxiosSecure();
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 500 });
-  }, []);
+    secureAxios.get(`/check-auth?email=${user.email}`).catch((error) => {
+      Toast(error.message, "error");
+    });
+  }, [secureAxios, user.email, Toast]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
