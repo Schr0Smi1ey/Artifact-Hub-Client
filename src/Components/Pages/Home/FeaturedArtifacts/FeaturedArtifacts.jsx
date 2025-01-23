@@ -2,24 +2,24 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../Contexts/AuthContext/AuthProvider";
 import Artifact from "../../../Cards/Artifact";
+import useCustomAxios from "../../../../Hooks/useCustomAxios";
 
 const FeaturedArtifacts = () => {
   const [artifacts, setArtifacts] = useState([]);
   const navigate = useNavigate();
   const { theme, Toast } = useContext(AuthContext);
-
+  const customAxios = useCustomAxios();
   useEffect(() => {
-    fetch("http://localhost:3000/Artifacts")
-      .then((res) => res.json())
+    customAxios(`/Artifacts`)
       .then((data) => {
-        const sortedArtifacts = [...data].sort(
+        const sortedArtifacts = [...data.data].sort(
           (a, b) => b.likeCount - a.likeCount
         );
         const featuredArtifacts = sortedArtifacts.slice(0, 6);
         setArtifacts(featuredArtifacts);
       })
       .catch((err) => Toast(err.message, "error"));
-  }, []);
+  }, [Toast, customAxios]);
 
   return (
     <section

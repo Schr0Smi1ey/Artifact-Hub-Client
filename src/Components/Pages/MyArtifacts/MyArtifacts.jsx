@@ -9,6 +9,7 @@ import "aos/dist/aos.css";
 import Aos from "aos";
 import { BounceLoader } from "react-spinners";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useCustomAxios from "../../../Hooks/useCustomAxios";
 
 const MyArtifacts = () => {
   const { user, Toast, theme } = useContext(AuthContext);
@@ -16,6 +17,7 @@ const MyArtifacts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [selectedArtifact, setSelectedArtifact] = useState(null);
+  const [updated, setUpdated] = useState(false);
   const [artifactData, setArtifactData] = useState({
     artifactName: "",
     artifactImage: "",
@@ -27,17 +29,18 @@ const MyArtifacts = () => {
     presentLocation: "",
   });
   const axiosSecure = useAxiosSecure();
+  const customAxios = useCustomAxios();
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 500 });
   }, [artifacts]);
   useEffect(() => {
     axiosSecure
-      .get(`http://localhost:3000/my-artifacts?addedBy=${user?.email}`)
+      .get(`/my-artifacts?addedBy=${user?.email}`)
       .then((res) => setArtifacts(res.data))
       .catch((error) => Toast(error.message, "error"))
       .finally(() => setLoading(false));
-  }, [Toast, user?.email, axiosSecure]);
+  }, [Toast, user?.email, axiosSecure, updated]);
 
   let filteredArtifacts = artifacts.filter((artifact) =>
     artifact.artifactName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -66,17 +69,10 @@ const MyArtifacts = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const updatedArtifact = { ...artifactData };
-    fetch(`http://localhost:3000/Artifacts/${selectedArtifact._id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedArtifact),
-    })
+    customAxios
+      .put(`/Artifacts/${selectedArtifact._id}`, updatedArtifact)
       .then(() => {
-        setArtifacts(
-          artifacts.map((artifact) =>
-            artifact._id === selectedArtifact._id ? updatedArtifact : artifact
-          )
-        );
+        setUpdated(!updated);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -107,13 +103,10 @@ const MyArtifacts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/Artifacts/${artifactId}`, {
-          method: "DELETE",
-        })
+        customAxios
+          .delete(`/Artifacts/${artifactId}`)
           .then(() => {
-            setArtifacts(
-              artifacts.filter((artifact) => artifact._id !== artifactId)
-            );
+            setUpdated(!updated);
           })
           .catch((error) => Toast(error.message, "error"));
         Swal.fire({

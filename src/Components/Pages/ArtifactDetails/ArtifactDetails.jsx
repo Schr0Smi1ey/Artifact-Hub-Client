@@ -34,17 +34,8 @@ const ArtifactDetails = () => {
   const handleLikeToggle = () => {
     const updatedLikeCount = isLiked ? likeCount - 1 : likeCount + 1;
     const updatedIsLiked = !isLiked;
-
-    fetch(`http://localhost:3000/toggle-like/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_email: user.email,
-      }),
-    })
-      .then((response) => response.json())
+    customAxios
+      .patch(`/toggle-like/${id}`, { user_email: user.email })
       .then(() => {
         setLikeCount(updatedLikeCount);
         setIsLiked(updatedIsLiked);

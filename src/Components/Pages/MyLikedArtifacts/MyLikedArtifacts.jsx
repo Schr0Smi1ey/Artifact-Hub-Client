@@ -57,14 +57,8 @@ const MyLikedArtifacts = () => {
           ))}
         </div>
       ) : (
-        // No liked artifacts fallback message
         <div className="flex flex-col items-center justify-center mt-12">
-          <img
-            src="https://i.imgur.com/9sQqZIw.png"
-            alt="No Liked Artifacts"
-            className="w-40 h-40 mb-6"
-          />
-          <p className="text-2xl text-gray-600 font-semibold">
+          <p className="text-2xl text-red-600 font-semibold">
             You have not liked any artifacts yet.
           </p>
           <p className="text-lg text-gray-500 mt-2">

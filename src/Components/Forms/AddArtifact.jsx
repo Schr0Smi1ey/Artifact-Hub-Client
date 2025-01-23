@@ -5,6 +5,7 @@ import "sweetalert2/src/sweetalert2.scss";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useCustomAxios from "../../Hooks/useCustomAxios";
 
 const AddArtifact = () => {
   const { user, theme, Toast } = useContext(AuthContext);
@@ -22,6 +23,7 @@ const AddArtifact = () => {
     likeCount: 0,
   });
   const secureAxios = useAxiosSecure();
+  const customAxios = useCustomAxios();
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 500 });
@@ -37,13 +39,8 @@ const AddArtifact = () => {
 
   const handleAddArtifact = (e) => {
     e.preventDefault();
-    console.log(artifactData);
-    fetch("http://localhost:3000/Artifacts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(artifactData),
-    })
-      .then((response) => response.json())
+    customAxios
+      .post("/Artifacts", artifactData)
       // eslint-disable-next-line no-unused-vars
       .then((data) => {
         Swal.fire({
