@@ -17,7 +17,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const ArtifactDetails = () => {
   const { id } = useParams();
-  const { Toast, theme, user } = useContext(AuthContext);
+  const { Toast, user } = useContext(AuthContext);
   const [artifact, setArtifact] = useState(null);
   const [loading, setLoading] = useState(true);
   const [likeCount, setLikeCount] = useState(0);
@@ -67,11 +67,7 @@ const ArtifactDetails = () => {
   }
 
   return (
-    <div
-      className={`container mx-auto px-6 py-32 ${
-        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-gray-900"
-      } rounded-xl shadow-xl`}
-    >
+    <div className={`container mx-auto px-6 py-32 rounded-xl shadow-xl`}>
       <Helmet>
         <title>{artifact.artifactName} | Artifact Details</title>
       </Helmet>
@@ -124,11 +120,7 @@ const ArtifactDetails = () => {
         </div>
 
         {/* Artifact Information */}
-        <div
-          className={`bg-$
-            {theme === "dark" ? "gray-800" : "gray-100"}
-          } p-8 rounded-2xl shadow-lg`}
-        >
+        <div className={`p-8 rounded-2xl shadow-lg`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-base md:text-lg font-medium">
             <div className="space-y-4">
               <p className="flex items-center space-x-2">

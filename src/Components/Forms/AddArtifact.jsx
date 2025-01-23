@@ -8,7 +8,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useCustomAxios from "../../Hooks/useCustomAxios";
 
 const AddArtifact = () => {
-  const { user, theme, Toast } = useContext(AuthContext);
+  const { user, Toast } = useContext(AuthContext);
   const [artifactData, setArtifactData] = useState({
     artifactName: "",
     artifactImage: "",
@@ -77,9 +77,7 @@ const AddArtifact = () => {
 
   return (
     <div
-      className={`container mx-auto px-4 py-32 md:py-40 lg:py-52 ${
-        theme === "dark" ? "text-white" : "text-black"
-      }`}
+      className={`container mx-auto px-4 py-32 md:py-40 lg:py-52 text-white`}
     >
       <h1
         data-aos="zoom-in"
@@ -94,9 +92,7 @@ const AddArtifact = () => {
 
       <form
         onSubmit={handleAddArtifact}
-        className={`${
-          theme === "dark" ? "bg-gray-950" : "bg-white"
-        } shadow-lg rounded-lg p-6 max-w-3xl mx-auto`}
+        className={`bg-black shadow-lg rounded-lg p-6 max-w-3xl mx-auto`}
       >
         <div data-aos="fade-up" className="mb-4">
           <label
@@ -112,7 +108,7 @@ const AddArtifact = () => {
             value={artifactData.artifactName}
             onChange={handleInputChange}
             placeholder="Enter artifact name"
-            className="input input-bordered w-full"
+            className="input text-black input-bordered w-full"
             required
           />
         </div>
@@ -131,7 +127,7 @@ const AddArtifact = () => {
             value={artifactData.artifactImage}
             onChange={handleInputChange}
             placeholder="Enter artifact image URL"
-            className="input input-bordered w-full"
+            className="input text-black input-bordered w-full"
             required
           />
         </div>
@@ -148,7 +144,7 @@ const AddArtifact = () => {
             name="artifactType"
             value={artifactData.artifactType}
             onChange={handleInputChange}
-            className="select select-bordered w-full"
+            className="select text-black select-bordered w-full"
             required
           >
             <option value="" disabled>
@@ -174,7 +170,7 @@ const AddArtifact = () => {
             value={artifactData.historicalContext}
             onChange={handleInputChange}
             placeholder="Describe the historical context"
-            className="textarea textarea-bordered w-full"
+            className="textarea text-black textarea-bordered w-full"
             required
           ></textarea>
         </div>
@@ -193,7 +189,7 @@ const AddArtifact = () => {
             value={artifactData.createdAt}
             onChange={handleInputChange}
             placeholder="e.g., 100 BC"
-            className="input input-bordered w-full"
+            className="input text-black input-bordered w-full"
             required
           />
         </div>
@@ -212,7 +208,7 @@ const AddArtifact = () => {
             value={artifactData.discoveredAt}
             onChange={handleInputChange}
             placeholder="e.g., 1799"
-            className="input input-bordered w-full"
+            className="input text-black input-bordered w-full"
           />
         </div>
 
@@ -230,7 +226,7 @@ const AddArtifact = () => {
             value={artifactData.discoveredBy}
             onChange={handleInputChange}
             placeholder="Enter the name of the discoverer"
-            className="input input-bordered w-full"
+            className="input text-black input-bordered w-full"
           />
         </div>
 
@@ -248,7 +244,7 @@ const AddArtifact = () => {
             value={artifactData.presentLocation}
             onChange={handleInputChange}
             placeholder="Enter the current location"
-            className="input input-bordered w-full"
+            className="input text-black input-bordered w-full"
           />
         </div>
 
@@ -257,7 +253,7 @@ const AddArtifact = () => {
           <input
             type="text"
             value={artifactData.adderName}
-            className="input input-bordered w-full"
+            className="input text-black input-bordered w-full"
             readOnly
           />
         </div>
@@ -269,7 +265,7 @@ const AddArtifact = () => {
           <input
             type="text"
             value={artifactData.addedBy}
-            className="input input-bordered w-full"
+            className="input input-bordered text-black w-full"
             readOnly
           />
         </div>
