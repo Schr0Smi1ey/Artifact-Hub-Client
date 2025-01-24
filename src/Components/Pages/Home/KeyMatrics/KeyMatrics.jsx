@@ -9,7 +9,7 @@ const KeyMatrics = () => {
     Aos.init({ duration: 700 });
   }, []);
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto my-20">
       <section
         id="success"
         className="my-16 text-center bg-gradient-to-r from-primary/30 via-white to-primary/10 py-12 px-8 rounded-3xl shadow-xl"

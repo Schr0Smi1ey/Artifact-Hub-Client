@@ -55,7 +55,7 @@ const Testimonials = () => {
   const { id, text, name, location, image } = testimonials[currentSlide];
   return (
     <div>
-      <section className="md:container mx-auto my-10 lg:my-20">
+      <section className="md:container mx-auto my-16 lg:my-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div data-aos="fade-up" className="font-poppins  p-10 space-y-5">
             <h2 className="font-semibold text-primary text-xl lg:text-lg">

@@ -3,6 +3,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 import member from "../../../../assets/Member.jpg";
+import { FaTimes } from "react-icons/fa";
 const MembershipSection = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   useEffect(() => {
@@ -13,7 +14,7 @@ const MembershipSection = () => {
   };
 
   return (
-    <div className="relative text-white pb-[8%] py-10">
+    <div className="relative text-white pb-[8%] mt-16 py-10">
       <div className="container shadow-xl p-5 mx-auto flex flex-col md:flex-row items-center gap-14 px-6">
         <div data-aos="fade-up" className="relative w-full md:w-1/2">
           <img src={member} alt="Membership" className="rounded-lg shadow-lg" />
@@ -69,15 +70,16 @@ const MembershipSection = () => {
 
       {/* Video Popup */}
       {isVideoOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="relative bg-white p-4 rounded-lg max-w-3xl w-full">
+        <div className="fixed inset-0 bg-black p-4 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="relative bg-primary p-4 rounded-lg max-w-3xl w-full">
             <button
-              className="absolute top-2 right-2 text-black text-2xl"
+              className="absolute top-[-4px] right-[-4px] border-4 border-red-600 rounded-full p-2 text-black text-2xl"
               onClick={toggleVideoPopup}
             >
-              &times;
+              <FaTimes className="text-red-600"></FaTimes>
             </button>
             <iframe
+              className="rounded-xl"
               width="100%"
               height="400"
               src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Replace with the desired YouTube video URL
