@@ -2,11 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
-import { FaSun, FaMoon } from "react-icons/fa";
-import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 const NavBar = () => {
-  const { user, signOutUser, Toast, setLoading, theme, toggleTheme } =
+  const { user, signOutUser, Toast, setLoading, theme} =
     useContext(AuthContext);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -61,35 +59,22 @@ const NavBar = () => {
   };
   const navElements = (
     <ul
-      className={`flex flex-col text-center lg:flex-row items-center justify-center gap-2 sm:gap-5 font-medium text-lg ${
-        theme == "dark" ? "text-white" : "text-black"
-      }`}
+      className={`flex flex-col text-center lg:flex-row items-center justify-center gap-2 sm:gap-5 font-medium text-lg`}
     >
-      {
-        <div className="flex sm:hidden">
-          <button
-            onClick={toggleTheme}
-            className="p-2 bg-gray-200 dark:bg-gray-800 rounded-full"
-          >
-            {theme == "light" ? (
-              <FaMoon className="text-gray-800 dark:text-yellow-500 text-xl" />
-            ) : (
-              <FaSun className="text-yellow-500 dark:text-gray-200 text-xl" />
-            )}
-          </button>
-        </div>
-      }
       <NavLink onClick={toggleMenuDropdown} to="/">
-        <span>Home</span>
+        <span className="font-bold text-xl">Home</span>
       </NavLink>
       <NavLink onClick={toggleMenuDropdown} to={"/all-artifacts"}>
-        <span>All Artifacts</span>
+        <span className="font-bold text-xl">All Artifacts</span>
       </NavLink>
       <NavLink onClick={toggleMenuDropdown} to={"/add-artifact"}>
-        <span>Add Artifacts</span>
+        <span className="font-bold text-xl">Add Artifacts</span>
       </NavLink>
       {user && (
-        <Link className="sm:hidden text-red-600" onClick={showSignOutModal}>
+        <Link
+          className="sm:hidden font-bold text-xl text-red-600"
+          onClick={showSignOutModal}
+        >
           Logout
         </Link>
       )}
@@ -98,11 +83,7 @@ const NavBar = () => {
   const navElementsEnd = (
     <div className="flex items-center justify-center sm:justify-left gap-2 mb-2 md:mb-0 sm:gap-5">
       {user && (
-        <div
-          className={` dropdown dropdown-end ${
-            theme == "dark" ? "text-white" : "text-black"
-          }`}
-        >
+        <div className={` dropdown dropdown-end`}>
           <div
             tabIndex={0}
             role="button"
@@ -128,26 +109,26 @@ const NavBar = () => {
                   className="block rounded-2xl mx-auto mb-2"
                 />
               </li>
-              <li className="hover:bg-gradient-to-t hover:from-green-200 hover:to-green-100">
+              <li className="hover:bg-gradient-to-t hover:from-primary/20 hover:to-primary/10">
                 <h3 className="justify-between flex font-medium text-base">
                   {user.displayName}
                 </h3>
               </li>
-              <li className="hover:bg-gradient-to-t hover:from-green-200 hover:to-green-100">
+              <li className="hover:bg-gradient-to-t hover:from-primary/20 hover:to-primary/10">
                 <Link onClick={toggleMenuDropdown} to={"/my-artifact"}>
                   <span className="justify-between flex font-bold text-base w-fit">
                     My Artifacts
                   </span>
                 </Link>
               </li>
-              <li className="hover:bg-gradient-to-t hover:from-green-200 hover:to-green-100">
+              <li className="hover:bg-gradient-to-t hover:from-primary/20 hover:to-primary/10">
                 <Link onClick={toggleMenuDropdown} to="/my-liked-artifact">
                   <span className="justify-between flex font-bold text-base w-fit">
                     Liked Artifacts
                   </span>
                 </Link>
               </li>
-              <li className="font-semibold text-xl text-red-600 hover:bg-gradient-to-t hover:from-green-200 hover:to-green-100">
+              <li className="font-semibold text-xl text-red-600 hover:bg-gradient-to-t hover:from-primary/20 hover:to-primary/10">
                 <Link onClick={showSignOutModal}>Logout</Link>
               </li>
             </ul>
@@ -177,46 +158,12 @@ const NavBar = () => {
           </Link>
         )}
       </div>
-      <div className="hidden sm:flex">
-        <button
-          onClick={toggleTheme}
-          className="p-2 bg-white shadow-lg rounded-full"
-        >
-          {theme === "light" ? (
-            <>
-              <FaMoon
-                data-tooltip-id="theme-tooltip"
-                data-tooltip-content="Switch to dark mode"
-                data-tooltip-place="bottom"
-                data-tooltip-offset={20}
-                data-tooltip-variant="info"
-                className="z-[100] dark:text-yellow-500 text-xl"
-              />
-              <Tooltip id="theme-tooltip" className="z-[110]" />
-            </>
-          ) : (
-            <>
-              <FaSun
-                data-tooltip-id="theme-tooltip"
-                data-tooltip-content="Switch to light mode"
-                data-tooltip-place="bottom"
-                data-tooltip-offset={20}
-                data-tooltip-variant="info"
-                className="text-yellow-500 dark:text-gray-200 text-xl"
-              />
-              <Tooltip id="theme-tooltip" className="z-[110]" />
-            </>
-          )}
-        </button>
-      </div>
     </div>
   );
   return (
     <div
       className={`navbar shadow-md rounded-b-md container mx-auto center z-[70] w-[98%] sm:w-full md:w-[96%] py-3 px-3 md:py-4 md:px-5 flex justify-between items-center my-4 fixed top-0 left-[49.8%] sm:left-[50.7%] md:left-[50.7%] lg:left-1/2 xl:left-[50.1%]  transform -translate-x-1/2 transition-all duration-500 -translate-y-4 ${
-        scroll
-          ? "bg-primary mt-4 rounded-b-2xl"
-          : `${theme == "dark" ? "bg-black" : "bg-white"}`
+        scroll ? "bg-primary mt-4 rounded-b-2xl" : "bg-white"
       }`}
     >
       <dialog

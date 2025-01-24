@@ -5,22 +5,16 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 
 const Footer = () => {
   useEffect(() => {
     AOS.init({ duration: 500 });
   }, []);
-  const { theme } = useContext(AuthContext);
   return (
-    <div
-      className={`${
-        theme === "dark" ? "text-white" : ""
-      } bg-black mt-52 relative text-white`}
-    >
+    <div className={`bg-black mt-52 relative text-white`}>
       <div className="container py-7 mx-auto z-0">
         <div data-aos="fade-down" className="text-center z-0">
           <h3 className="flex justify-center items-center gap-3 font-bold text-3xl mb-3">

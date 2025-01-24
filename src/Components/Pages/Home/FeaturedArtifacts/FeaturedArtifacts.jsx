@@ -7,7 +7,7 @@ import useCustomAxios from "../../../../Hooks/useCustomAxios";
 const FeaturedArtifacts = () => {
   const [artifacts, setArtifacts] = useState([]);
   const navigate = useNavigate();
-  const { theme, Toast } = useContext(AuthContext);
+  const { Toast } = useContext(AuthContext);
   const customAxios = useCustomAxios();
   useEffect(() => {
     customAxios(`/Artifacts`)
@@ -22,23 +22,15 @@ const FeaturedArtifacts = () => {
   }, [Toast, customAxios]);
 
   return (
-    <div className={`${theme === "dark" ? "bg-white" : "bg-black"}`}>
-      <section
-        className={`container mx-auto pt-[5%] pb-[15%] px-4 ${
-          theme === "dark" ? "text-white" : "text-black"
-        }`}
-      >
+    <div className={`bg-white`}>
+      <section className={`container mx-auto pt-[5%] px-4`}>
         <h2
-          className={`text-3xl md:text-4xl ${
-            theme === "dark" ? "text-black" : "text-white"
-          } lg:text-5xl font-extrabold text-center mb-6`}
+          className={`text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-6`}
         >
           Discover Rare Historical Artifacts 🏺✨
         </h2>
         <p
-          className={`text-lg md:text-xl text-center ${
-            theme === "dark" ? "text-black" : "text-white"
-          } w-[90%] sm:w-[80%] md:w-[55%] mx-auto mb-8`}
+          className={`text-lg md:text-xl text-center w-[90%] sm:w-[80%] md:w-[55%] mx-auto mb-8`}
         >
           Unearth the stories of the past through rare and valuable artifacts
           from ancient civilizations. Explore, learn, and marvel at these

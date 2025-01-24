@@ -1,6 +1,5 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../../Contexts/AuthContext/AuthProvider";
 import slide1 from "../../../../assets/slide1.png";
 import slide2 from "../../../../assets/slide2.png";
 import slide3 from "../../../../assets/slide3.png";
@@ -10,6 +9,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { Slide } from "react-awesome-reveal";
 import { Typewriter } from "react-simple-typewriter";
+import { AuthContext } from "../../../../Contexts/AuthContext/AuthProvider";
 
 const Banner = () => {
   const sliderContent = [
@@ -54,16 +54,12 @@ const Banner = () => {
       imgSrc: slide5,
     },
   ];
-
-  const { user, theme } = useContext(AuthContext);
-  const [color, setColor] = useState(theme === "dark" ? "#ffffff" : "#000000");
-  console.log(color);
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     AOS.init({ duration: 500 });
-    setColor(theme === "dark" ? "#ffffff" : "#000000");
-  }, [theme]);
+  }, []);
   const goToPreviousSlide = () => {
     setCurrentSlide(
       (prev) => (prev - 1 + sliderContent.length) % sliderContent.length
@@ -78,20 +74,14 @@ const Banner = () => {
     sliderContent[currentSlide];
 
   return (
-    <section
-      className={`relative ${
-        theme === "dark" ? "bg-black" : "bg-white"
-      } text-white mx-auto pb-[5%] ${
-        theme == "dark" ? "text-white" : "text-black"
-      }`}
-    >
+    <section className={`relative bg-black mx-auto pb-[5%] text-white`}>
       <svg
         className="absolute w-full z-30 bottom-[-1%] lg:bottom-[-2%] xl:bottom-[-3%] text-white"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 170.68 1440 149.32"
       >
         <path
-          fill={color}
+          fill="#ffffff"
           fillOpacity="1"
           d="M0,288L80,282.7C160,277,320,267,480,240C640,213,800,171,960,170.7C1120,171,1280,213,1360,234.7L1440,256L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
         ></path>
@@ -121,9 +111,7 @@ const Banner = () => {
                   <h1 data-aos="fade-left">
                     <Slide direction="right">
                       <h1
-                        className={`font-bold ${
-                          theme === "dark" ? "text-white" : "text-black"
-                        } text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-5`}
+                        className={`font-bold text-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-5`}
                       >
                         <Typewriter
                           words={[title]}
@@ -138,9 +126,7 @@ const Banner = () => {
                     </Slide>
                   </h1>
                   <p
-                    className={`font-normal ${
-                      theme == "dark" ? "text-gray-200" : "text-gray-600"
-                    } mb-6`}
+                    className={`font-normal text-gray-200 mb-6`}
                     data-aos="fade-left"
                     data-aos-delay="200"
                   >

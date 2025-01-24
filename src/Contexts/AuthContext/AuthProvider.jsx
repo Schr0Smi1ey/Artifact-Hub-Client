@@ -23,7 +23,6 @@ const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -32,22 +31,21 @@ const AuthProvider = ({ children }) => {
       } else {
         setUser(null);
       }
-      console.log("State Captured", user?.email);
       if (user?.email) {
         const currentUser = { email: user.email };
         axios
           .post("http://localhost:3000/jwt", currentUser, {
             withCredentials: true,
           })
+          // eslint-disable-next-line no-unused-vars
           .then((res) => {
-            console.log(res.data);
             setLoading(false);
           });
       } else {
         axios
           .post("http://localhost:3000/logout", {}, { withCredentials: true })
+          // eslint-disable-next-line no-unused-vars
           .then((res) => {
-            console.log(res.data);
             setLoading(false);
           });
       }
@@ -55,14 +53,6 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    // document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -110,9 +100,6 @@ const AuthProvider = ({ children }) => {
     loading,
     setLoading,
     Toast,
-    theme,
-    setTheme,
-    toggleTheme,
     resetPassword,
   };
   return (
