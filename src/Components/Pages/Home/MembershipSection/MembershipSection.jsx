@@ -40,7 +40,8 @@ const MembershipSection = () => {
         {/* Right Section - Membership Info */}
         <div className="text-center text-black md:text-left w-full md:w-1/2 space-y-6">
           <h2 data-aos="fade-up" className="text-4xl font-bold">
-            Become a <span className="text-primary">Member of Artifacts</span>
+            Become a{" "}
+            <span className="text-primary">Member of Artifact Hub</span>
           </h2>
           <ul className="space-y-2">
             <li data-aos="fade-up" className="flex items-center gap-3">
@@ -61,7 +62,7 @@ const MembershipSection = () => {
           </ul>
           <button
             data-aos="fade-up"
-            className="bg-primary text-white py-3 px-6 rounded-full text-lg font-medium hover:bg-orange-600 transition"
+            className="bg-primary/80 text-white py-3 px-6 rounded-full text-lg font-medium hover:bg-primary transition"
           >
             Become a Member
           </button>

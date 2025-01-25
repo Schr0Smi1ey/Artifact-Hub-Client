@@ -13,7 +13,7 @@ const AboutArtifacts = () => {
         stories of ancient civilizations, intriguing mysteries, and human
         creativity.
       </p>
-      <button className="bg-primary text-white py-3 px-6 rounded-full text-lg font-medium hover:bg-orange-600 transition-colors">
+      <button className="bg-primary/80 text-white py-3 px-6 rounded-full text-lg font-medium hover:bg-primary transition-colors">
         <Link to={"/all-artifacts"}>Explore More</Link>
       </button>
     </div>

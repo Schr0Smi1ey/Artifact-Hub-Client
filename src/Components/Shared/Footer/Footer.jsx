@@ -1,132 +1,108 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaFacebookF,
   FaTwitter,
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     AOS.init({ duration: 500 });
   }, []);
+
   return (
-    <div className={`bg-black mt-52 relative text-white`}>
-      <div className="container py-7 mx-auto z-0">
-        <div data-aos="fade-down" className="text-center z-0">
-          <h3 className="flex justify-center items-center gap-3 font-bold text-3xl mb-3">
-            Artifact <span className="text-primary">Hub</span>
-          </h3>
-          <p className="font-medium text-base">
-            Discover and share historical artifacts with the world.
-          </p>
-        </div>
-
-        <div data-aos="fade-down" className="divider my-5"></div>
-
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* Navigation Section */}
-          <div
-            data-aos="fade-up"
-            className="flex mx-auto items-center md:items-start flex-col gap-2"
-          >
-            <h2 className="mb-3 font-bold text-xl">Navigation</h2>
-            <Link className="hover:text-primary hover:font-semibold" to="/">
-              Home
-            </Link>
-            <Link
-              className="hover:text-primary hover:font-semibold"
-              to="/all-artifacts"
-            >
-              All Artifacts
-            </Link>
-            <Link
-              className="hover:text-primary hover:font-semibold"
-              to="/add-artifact"
-            >
-              Add Artifact
-            </Link>
-            <Link
-              className="hover:text-primary hover:font-semibold"
-              to="/my-artifact"
-            >
-              My Artifacts
-            </Link>
+    <footer className="bg-black mt-52 text-white">
+      <div className="container mx-auto py-12 px-6">
+        {/* Top Section */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center border-b border-gray-700 pb-8">
+          {/* Branding Section */}
+          <div data-aos="fade-right" className="text-center md:text-left">
+            <h3 className="text-4xl font-bold mb-3">
+              Artifact <span className="text-primary">Hub</span>
+            </h3>
+            <p className="text-base font-medium">
+              Discover and share historical artifacts with the world.
+            </p>
           </div>
 
-          {/* Company Section */}
-          <div
-            data-aos="fade-up"
-            className="flex flex-col mx-auto items-center md:items-start gap-2"
-          >
-            <h2 className="mb-3 font-bold text-xl">Company</h2>
-            <Link
-              className="hover:text-primary hover:font-semibold"
-              to="/about"
+          {/* Navigation Links */}
+          <div data-aos="fade-up" className="text-center md:text-left">
+            <h4 className="text-xl font-bold mb-4">Quick Links</h4>
+            <div className="flex flex-wrap justify-center md:justify-start gap-4">
+              <Link
+                to="/"
+                className="text-sm hover:text-primary transition-colors"
+              >
+                Home
+              </Link>
+              <Link
+                to="/all-artifacts"
+                className="text-sm hover:text-primary transition-colors"
+              >
+                All Artifacts
+              </Link>
+              <Link
+                to="/add-artifact"
+                className="text-sm hover:text-primary transition-colors"
+              >
+                Add Artifact
+              </Link>
+              <Link
+                to="/my-artifact"
+                className="text-sm hover:text-primary transition-colors"
+              >
+                My Artifacts
+              </Link>
+              <Link
+                to="/about"
+                className="text-sm hover:text-primary transition-colors"
+              >
+                About Us
+              </Link>
+              <Link
+                to="/contact"
+                className="text-sm hover:text-primary transition-colors"
+              >
+                Contact Us
+              </Link>
+              <Link
+                to="/privacy-policy"
+                className="text-sm hover:text-primary transition-colors"
+              >
+                Privacy Policy
+              </Link>
+            </div>
+          </div>
+          {/* Join Now */}
+          <div data-aos="fade-up" className="text-center md:text-left">
+            <h4 className="text-xl font-bold mb-4">Join Now</h4>
+            <p className="text-sm mb-4">
+              Become a part of our community and explore the world of artifacts.
+            </p>
+            <button
+              onClick={() => navigate(!user ? "/signup" : "/all-artifacts")}
+              className="bg-primary text-black font-bold py-2 px-4 rounded hover:bg-primary/90 transition-colors"
             >
-              About Us
-            </Link>
-            <Link
-              className="hover:text-primary hover:font-semibold"
-              to="/contact"
-            >
-              Contact Us
-            </Link>
-            <Link
-              className="hover:text-primary hover:font-semibold"
-              to="/careers"
-            >
-              Careers
-            </Link>
-            <Link
-              className="hover:text-primary hover:font-semibold"
-              to="/privacy-policy"
-            >
-              Privacy Policy
-            </Link>
+              Get Started
+            </button>
           </div>
 
-          {/* Resources Section */}
-          <div
-            data-aos="fade-up"
-            className="flex flex-col mx-auto items-center md:items-start gap-2"
-          >
-            <h2 className="mb-3 font-bold text-xl">Resources</h2>
-            <Link className="hover:text-primary hover:font-semibold" to="/faq">
-              FAQs
-            </Link>
-            <Link className="hover:text-primary hover:font-semibold" to="/blog">
-              Blog
-            </Link>
-            <Link
-              className="hover:text-primary hover:font-semibold"
-              to="/support"
-            >
-              Support Center
-            </Link>
-            <Link
-              className="hover:text-primary hover:font-semibold"
-              to="/guides"
-            >
-              Artifact Guides
-            </Link>
-          </div>
-
-          {/* Follow Us Section */}
-          <div
-            data-aos="fade-up"
-            className="flex flex-col mx-auto items-center md:items-start gap-2"
-          >
-            <h2 className="mb-3 font-bold text-xl">Follow Us</h2>
-            <div className="flex gap-4">
+          {/* Follow Us */}
+          <div data-aos="fade-left" className="text-center md:text-right">
+            <h4 className="text-xl font-bold mb-4">Follow Us</h4>
+            <div className="flex justify-center md:justify-end gap-4">
               <a
                 href="https://www.facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl hover:text-primary"
+                className="text-2xl hover:text-primary transition-colors"
               >
                 <FaFacebookF />
               </a>
@@ -134,7 +110,7 @@ const Footer = () => {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl hover:text-primary"
+                className="text-2xl hover:text-primary transition-colors"
               >
                 <FaTwitter />
               </a>
@@ -142,7 +118,7 @@ const Footer = () => {
                 href="https://www.instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl hover:text-primary"
+                className="text-2xl hover:text-primary transition-colors"
               >
                 <FaInstagram />
               </a>
@@ -150,7 +126,7 @@ const Footer = () => {
                 href="https://www.linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl hover:text-primary"
+                className="text-2xl hover:text-primary transition-colors"
               >
                 <FaLinkedinIn />
               </a>
@@ -158,11 +134,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="text-center mt-10">
-          &copy; {new Date().getFullYear()} ArtifactHub. All Rights Reserved.
-        </p>
+        {/* Bottom Section */}
+        <div className="text-center mt-8">
+          <p className="text-sm">
+            &copy; {new Date().getFullYear()} ArtifactHub. All Rights Reserved.
+          </p>
+        </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

@@ -4,7 +4,7 @@ import "./Navbar.css";
 import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 import "react-tooltip/dist/react-tooltip.css";
 const NavBar = () => {
-  const { user, signOutUser, Toast, setLoading, theme} =
+  const { user, signOutUser, Toast, setLoading, theme } =
     useContext(AuthContext);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,6 +69,9 @@ const NavBar = () => {
       </NavLink>
       <NavLink onClick={toggleMenuDropdown} to={"/add-artifact"}>
         <span className="font-bold text-xl">Add Artifacts</span>
+      </NavLink>
+      <NavLink onClick={toggleMenuDropdown} to={"/about-us"}>
+        <span className="font-bold text-xl">About Us</span>
       </NavLink>
       {user && (
         <Link

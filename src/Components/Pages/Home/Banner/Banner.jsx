@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import slide1 from "../../../../assets/slide1.png";
 import slide2 from "../../../../assets/slide2.png";
 import slide3 from "../../../../assets/slide3.png";
-import slide4 from "../../../../assets/slide3.png";
-import slide5 from "../../../../assets/slide3.png";
+import slide4 from "../../../../assets/slide4.png";
+import slide5 from "../../../../assets/slide5.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Slide } from "react-awesome-reveal";
@@ -135,9 +135,10 @@ const Banner = () => {
                   <button
                     onClick={() =>
                       navigate(
-                        buttonText === "Get Started" && !user
+                        (buttonText === "Get Started" && !user) ||
+                          (buttonText === "Join the Community" && !user)
                           ? "/signup"
-                          : "/all-artifact"
+                          : "/all-artifacts"
                       )
                     }
                     className="btn bg-primary/90 hover:bg-white hover:text-black hover:border-2 hover:border-primary font-semibold text-lg text-white"

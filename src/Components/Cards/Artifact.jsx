@@ -38,7 +38,9 @@ const Artifact = ({ artifact }) => {
       {/* Card Content */}
       <div className="p-4 flex flex-col">
         {/* Title */}
-        <h3 className="text-xl font-bold mb-2 truncate">{artifactName}</h3>
+        <h3 className="text-xl font-bold mb-2 text-white truncate">
+          {artifactName}
+        </h3>
 
         <div className="flex-grow">
           {/* Historical Context */}

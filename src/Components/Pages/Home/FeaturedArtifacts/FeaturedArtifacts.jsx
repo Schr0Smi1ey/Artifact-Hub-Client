@@ -30,7 +30,7 @@ const FeaturedArtifacts = () => {
           Discover Rare Historical Artifacts 🏺✨
         </h2>
         <p
-          className={`text-lg md:text-xl text-center w-[90%] sm:w-[80%] md:w-[55%] mx-auto mb-8`}
+          className={`text-lg md:text-xl text-center w-[90%] sm:w-[80%] md:w-[55%] mx-auto mb-14`}
         >
           Unearth the stories of the past through rare and valuable artifacts
           from ancient civilizations. Explore, learn, and marvel at these

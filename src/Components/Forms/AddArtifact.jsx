@@ -7,6 +7,7 @@ import "aos/dist/aos.css";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useCustomAxios from "../../Hooks/useCustomAxios";
 import { Helmet } from "react-helmet";
+import Select from "react-select";
 
 const AddArtifact = () => {
   const { user, Toast } = useContext(AuthContext);
@@ -23,6 +24,32 @@ const AddArtifact = () => {
     addedBy: user?.email,
     likeCount: 0,
   });
+  const artifactTypes = [
+    { label: "Pottery", value: "Pottery" },
+    { label: "Mosaic Art", value: "Mosaic Art" },
+    { label: "Jewelry", value: "Jewelry" },
+    { label: "Weapon", value: "Weapon" },
+    { label: "Funerary Items", value: "Funerary Items" },
+    { label: "Seals", value: "Seals" },
+    { label: "Stone Artifact", value: "Stone Artifact" },
+    { label: "Documents", value: "Documents" },
+    { label: "Sculpture", value: "Sculpture" },
+    { label: "Cave Art", value: "Cave Art" },
+    { label: "Reliefs", value: "Reliefs" },
+    { label: "Statue", value: "Statue" },
+    { label: "Armor", value: "Armor" },
+    { label: "Monument", value: "Monument" },
+    { label: "Statues", value: "Statues" },
+    { label: "Funerary Mask", value: "Funerary Mask" },
+    { label: "Ship", value: "Ship" },
+    { label: "Mechanical Device", value: "Mechanical Device" },
+    { label: "Textile Art", value: "Textile Art" },
+    { label: "Law Code", value: "Law Code" },
+    { label: "Manuscripts", value: "Manuscripts" },
+    { label: "Portrait", value: "Portrait" },
+    { label: "Fossil", value: "Fossil" },
+    { label: "Stele", value: "Stele" },
+  ];
   const secureAxios = useAxiosSecure();
   const customAxios = useCustomAxios();
   useEffect(() => {
@@ -37,7 +64,6 @@ const AddArtifact = () => {
     const { name, value } = e.target;
     setArtifactData({ ...artifactData, [name]: value });
   };
-
   const handleAddArtifact = (e) => {
     e.preventDefault();
     customAxios
@@ -154,30 +180,56 @@ const AddArtifact = () => {
               />
             </div>
 
-            <div data-aos="fade-up" className="mb-4">
-              <label
-                className="block text-lg font-semibold mb-2"
-                htmlFor="artifactType"
-              >
-                Artifact Type
-              </label>
-              <select
-                id="artifactType"
-                name="artifactType"
-                value={artifactData.artifactType}
-                onChange={handleInputChange}
-                className="select text-black select-bordered w-full"
-                required
-              >
-                <option value="" disabled>
-                  Choose Artifact Type
-                </option>
-                <option value="Tools">Tools</option>
-                <option value="Weapons">Weapons</option>
-                <option value="Documents">Documents</option>
-                <option value="Writings">Writings</option>
-              </select>
-            </div>
+            <label
+              className="block text-lg font-semibold mb-2"
+              htmlFor="artifactImage"
+            >
+              Artifact Type
+            </label>
+
+            <Select
+              id="artifactType"
+              name="artifactType"
+              options={artifactTypes}
+              value={
+                artifactTypes.find(
+                  (option) => option.value === artifactData.artifactType
+                ) || null
+              } // Ensure null is passed if no option is selected
+              onChange={(selectedOption) => {
+                handleInputChange({
+                  target: {
+                    name: "artifactType",
+                    value: selectedOption ? selectedOption.value : "", // Update value based on selection
+                  },
+                });
+              }}
+              className="w-full mb-4"
+              required
+              placeholder="Choose Artifact Type"
+              isSearchable
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  position: "relative",
+                  zIndex: 50,
+                }),
+                menu: (provided) => ({
+                  ...provided,
+                  zIndex: 100,
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isSelected
+                    ? "#1D4ED8"
+                    : state.isFocused
+                    ? "rgba(29, 78, 216, 0.8)"
+                    : "transparent",
+                  color: state.isSelected ? "white" : "black",
+                  cursor: "pointer",
+                }),
+              }}
+            />
 
             <div data-aos="fade-up" className="mb-4">
               <label

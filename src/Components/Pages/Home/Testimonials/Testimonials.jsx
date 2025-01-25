@@ -62,7 +62,7 @@ const Testimonials = () => {
               Client Testimonials
             </h2>
             <h1 className="font-volkhov font-bold text-4xl md:text-5xl text-black leading-[65px]">
-              What Our Clients Say <br /> about Artifact Hub.
+              What Our Visitors Say <br /> about Artifact Hub.
             </h1>
             <p className="text-gray-600 text-lg">
               Discover how Artifact Hub has connected collectors, researchers,
