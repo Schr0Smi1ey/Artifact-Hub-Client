@@ -69,7 +69,7 @@ const ArtifactDetails = () => {
   return (
     <div className={`container mx-auto px-6 py-32 rounded-xl shadow-xl`}>
       <Helmet>
-        <title>{artifact.artifactName} | Artifact Details</title>
+        <title>Artifact-Hub | {artifact.artifactName} </title>
       </Helmet>
 
       {/* Header Section */}

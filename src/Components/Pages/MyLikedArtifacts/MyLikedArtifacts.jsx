@@ -24,9 +24,8 @@ const MyLikedArtifacts = () => {
 
   return (
     <div className={`bg-black pt-32 md:pt-40 lg:pt-52`}>
-      {/* Helmet for page title */}
       <Helmet>
-        <title>My Liked Artifacts | Artifact Hub</title>
+        <title>Artifact-Hub | My-Liked-Artifacts</title>
       </Helmet>
 
       <div className="relative pb-[12%]">

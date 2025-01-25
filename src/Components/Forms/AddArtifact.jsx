@@ -6,6 +6,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useCustomAxios from "../../Hooks/useCustomAxios";
+import { Helmet } from "react-helmet";
 
 const AddArtifact = () => {
   const { user, Toast } = useContext(AuthContext);
@@ -77,6 +78,9 @@ const AddArtifact = () => {
 
   return (
     <div className={`bg-black pt-32 md:pt-40 lg:pt-52 text-white`}>
+      <Helmet>
+        <title>Artifact-Hub | Add-Artifact</title>
+      </Helmet>
       <div className="relative pb-[12%]">
         <svg
           className="absolute w-full z-30 bottom-[-1%] lg:bottom-[-2%] xl:bottom-[-3%] text-white"

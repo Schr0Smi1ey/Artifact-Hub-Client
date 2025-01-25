@@ -4,10 +4,14 @@ import Banner from "./Banner/Banner";
 import FeaturedArtifacts from "./FeaturedArtifacts/FeaturedArtifacts";
 import KeyMatrics from "./KeyMatrics/KeyMatrics";
 import Testimonials from "./Testimonials/Testimonials";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Artifact-Hub | Home</title>
+      </Helmet>
       <Banner></Banner>
       <AboutArtifacts></AboutArtifacts>
       <FeaturedArtifacts></FeaturedArtifacts>

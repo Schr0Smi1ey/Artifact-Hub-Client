@@ -62,7 +62,7 @@ const Login = () => {
       }`}
     >
       <Helmet>
-        <title>Artifact | Login</title>
+        <title>Artifact-Hub | Login</title>
       </Helmet>
       <div
         className={`flex w-full max-w-5xl shadow-lg ${

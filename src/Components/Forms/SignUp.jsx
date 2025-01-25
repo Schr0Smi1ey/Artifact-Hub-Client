@@ -112,7 +112,7 @@ const SignUp = () => {
       }`}
     >
       <Helmet>
-        <title>Artifact | Sign Up</title>
+        <title>Artifact-Hub | Sign Up</title>
       </Helmet>
       <div
         className={`flex ${
