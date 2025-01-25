@@ -14,6 +14,7 @@ import AddArtifact from "./Components/Forms/AddArtifact";
 import MyArtifacts from "./Components/Pages/MyArtifacts/MyArtifacts";
 import PrivateRoute from "./ProtectedRoute/PrivateRoute";
 import MyLikedArtifacts from "./Components/Pages/MyLikedArtifacts/MyLikedArtifacts";
+import AboutUs from "./Components/Pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
             <MyLikedArtifacts></MyLikedArtifacts>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "about-us",
+        element: <AboutUs></AboutUs>,
       },
       {
         path: "/login",
