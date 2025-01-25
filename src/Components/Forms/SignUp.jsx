@@ -48,7 +48,7 @@ const SignUp = () => {
     creationTime,
     lastSignInTime
   ) => {
-    await axios.post("http://localhost:3000/Users", {
+    await axios.post("/Users", {
       email,
       name,
       photoURL,

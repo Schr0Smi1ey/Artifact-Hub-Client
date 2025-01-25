@@ -13,7 +13,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../API/firebase.init.js";
 import { toast, Flip } from "react-toastify";
-import axios from "axios";
+import useCustomAxios from "../../Hooks/useCustomAxios.jsx";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
@@ -23,7 +23,7 @@ const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const customAxios = useCustomAxios();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -33,8 +33,8 @@ const AuthProvider = ({ children }) => {
       }
       if (user?.email) {
         const currentUser = { email: user.email };
-        axios
-          .post("http://localhost:3000/jwt", currentUser, {
+        customAxios
+          .post("/jwt", currentUser, {
             withCredentials: true,
           })
           // eslint-disable-next-line no-unused-vars
@@ -42,8 +42,8 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
           });
       } else {
-        axios
-          .post("http://localhost:3000/logout", {}, { withCredentials: true })
+        customAxios
+          .post("/logout", {}, { withCredentials: true })
           // eslint-disable-next-line no-unused-vars
           .then((res) => {
             setLoading(false);
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
       }
     });
     return () => unsubscribe();
-  }, []);
+  }, [customAxios]);
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);

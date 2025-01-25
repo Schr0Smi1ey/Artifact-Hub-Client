@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://artifact-hub-server.vercel.app",
   withCredentials: true,
 });
 
 const useAxiosSecure = () => {
-  const { signOutUser } = useContext(AuthContext);
+  const { signOutUser, Toast } = useContext(AuthContext);
   const navigate = useNavigate();
   useEffect(() => {
     axiosInstance.interceptors.response.use(
@@ -20,7 +20,7 @@ const useAxiosSecure = () => {
         if (error.response.status === 401 || error.response.status === 403) {
           signOutUser()
             .then(() => navigate("/login"))
-            .catch((err) => console.log(err));
+            .catch((err) => Toast(err.message, "error"));
         }
         return Promise.reject(error);
       }

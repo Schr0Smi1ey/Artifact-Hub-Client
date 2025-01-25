@@ -16,7 +16,7 @@ const MyLikedArtifacts = () => {
   }, []);
   useEffect(() => {
     axiosSecure
-      .get(`http://localhost:3000/liked-artifacts?user_email=${user.email}`)
+      .get(`/liked-artifacts?user_email=${user.email}`)
       .then((res) => setLikedArtifacts(res.data))
       .catch((error) => Toast(error.message, "error"))
       .finally(() => setLoading(false));

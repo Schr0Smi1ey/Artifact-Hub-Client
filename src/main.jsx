@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./Components/Shared/Errorpage/Errorpage";
 import Root from "./Components/Layout/Root";
 import AuthProvider from "./Contexts/AuthContext/AuthProvider";
-import Login from "./Components/Forms/LogIn";
+import Login from "./Components/Forms/Login";
 import SignUp from "./Components/Forms/SignUp";
 import Home from "./Components/Pages/Home/Home";
 import AllArtifacts from "./Components/Pages/AllArtifacts/AllArtifacts";
