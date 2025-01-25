@@ -12,14 +12,8 @@ import axios from "axios";
 const SignUp = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const {
-    createUser,
-    Toast,
-    updateUserProfile,
-    signInWithGoogle,
-    setLoading,
-    theme,
-  } = useContext(AuthContext);
+  const { createUser, Toast, updateUserProfile, signInWithGoogle, setLoading } =
+    useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   const [formData, setFormData] = useState({
@@ -106,18 +100,12 @@ const SignUp = () => {
   };
 
   return (
-    <div
-      className={`min-h-screen bg-gradient-to-t from-primary/20 to-primary/10 flex items-center justify-center ${
-        theme == "dark" ? "text-white" : "text-black"
-      }`}
-    >
+    <div className={`pt-32 md:pt-40 lg:pt-52`}>
       <Helmet>
         <title>Artifact-Hub | Sign Up</title>
       </Helmet>
       <div
-        className={`flex ${
-          theme == "dark" ? "bg-gray-950" : "bg-white"
-        } rounded-lg shadow-xl w-full max-w-5xl overflow-hidden`}
+        className={`flex rounded-lg container mx-auto shadow-xl w-full max-w-5xl overflow-hidden`}
       >
         <div
           data-aos="fade-right"
@@ -145,9 +133,7 @@ const SignUp = () => {
             <div>
               <label
                 htmlFor="name"
-                className={`block text-sm font-medium mb-2 ${
-                  theme == "dark" ? "text-white" : "text-gray-700"
-                }`}
+                className={`block text-sm font-medium mb-2`}
               >
                 Name
               </label>
@@ -165,9 +151,7 @@ const SignUp = () => {
             <div>
               <label
                 htmlFor="email"
-                className={`block text-sm mb-2 font-medium ${
-                  theme == "dark" ? "text-white" : "text-gray-700"
-                }`}
+                className={`block text-sm mb-2 font-medium`}
               >
                 Email
               </label>
@@ -185,9 +169,7 @@ const SignUp = () => {
             <div>
               <label
                 htmlFor="photoURL"
-                className={`block text-sm mb-2 font-medium ${
-                  theme == "dark" ? "text-white" : "text-gray-700"
-                }`}
+                className={`block text-sm mb-2 font-medium`}
               >
                 Photo URL
               </label>
@@ -204,9 +186,7 @@ const SignUp = () => {
             <div>
               <label
                 htmlFor="password"
-                className={`block text-sm mb-2 font-medium ${
-                  theme == "dark" ? "text-white" : "text-gray-700"
-                }`}
+                className={`block text-sm mb-2 font-medium`}
               >
                 Password
               </label>
@@ -283,6 +263,20 @@ const SignUp = () => {
             </Link>
           </p>
         </div>
+      </div>
+      <div className="pt-10 pb-32 md:pb-40 lg:pb-52"></div>
+      <div className="w-screen relative mx-auto text-center">
+        <svg
+          className="absolute w-full z-30 bottom-[-210px] text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 170.68 1440 149.32"
+        >
+          <path
+            fill="#000000"
+            fillOpacity="1"
+            d="M0,288L80,282.7C160,277,320,267,480,240C640,213,800,171,960,170.7C1120,171,1280,213,1360,234.7L1440,256L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+          ></path>
+        </svg>
       </div>
     </div>
   );

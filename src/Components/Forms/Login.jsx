@@ -9,7 +9,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Login = () => {
-  const { signInUser, signInWithGoogle, Toast, setLoading, theme } =
+  const { signInUser, signInWithGoogle, Toast, setLoading } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -56,30 +56,25 @@ const Login = () => {
   };
 
   return (
-    <div
-      className={`min-h-screen flex items-center justify-center bg-gradient-to-bl from-primary/10 to-primary/5 ${
-        theme == "dark" ? "text-white" : "text-black"
-      }`}
-    >
+    <div className={`pt-32 md:pt-40 lg:pt-52`}>
       <Helmet>
         <title>Artifact-Hub | Login</title>
       </Helmet>
       <div
-        className={`flex w-full max-w-5xl shadow-lg ${
-          theme == "dark" ? "bg-gray-950" : "bg-white"
-        } rounded-lg overflow-hidden`}
+        className={`flex bg-white w-full container mx-auto max-w-5xl shadow-lg  rounded-lg overflow-hidden`}
       >
         <div
           className="hidden md:flex md:w-1/2 bg-primary text-white flex-col items-center justify-center p-8"
           data-aos="fade-right"
         >
           <img src={logo} className="mx-auto mb-2 rounded-xl" alt="" />
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-4xl text-center font-bold mb-4">
             Welcome Back to Artifact Hub!
           </h2>
-          <p className="text-center text-lg">
-            Log in to Artifact Hub and explore a world of history at your
-            fingertips. Connect, contribute, and discover timeless treasures!
+          <p className="text-center text-lg mb-6">
+            Log in to access your collection and explore timeless treasures from
+            the past. Connect, contribute, and discover the history at your
+            fingertips!
           </p>
         </div>
 
@@ -92,12 +87,7 @@ const Login = () => {
           </h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label
-                htmlFor="email"
-                className={`block text-sm font-medium ${
-                  theme == "dark" ? "text-white" : "text-gray-700"
-                }`}
-              >
+              <label htmlFor="email" className={`block text-sm font-medium`}>
                 Email
               </label>
               <input
@@ -112,12 +102,7 @@ const Login = () => {
             </div>
 
             <div>
-              <label
-                htmlFor="password"
-                className={`block text-sm font-medium ${
-                  theme == "dark" ? "text-white" : "text-gray-700"
-                }`}
-              >
+              <label htmlFor="password" className={`block text-sm font-medium`}>
                 Password
               </label>
               <div className="relative">
@@ -202,6 +187,20 @@ const Login = () => {
             </Link>
           </p>
         </div>
+      </div>
+      <div className="pt-10 pb-32 md:pb-40 lg:pb-52"></div>
+      <div className="w-screen relative mx-auto text-center">
+        <svg
+          className="absolute w-full z-30 bottom-[-210px] text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 170.68 1440 149.32"
+        >
+          <path
+            fill="#000000"
+            fillOpacity="1"
+            d="M0,288L80,282.7C160,277,320,267,480,240C640,213,800,171,960,170.7C1120,171,1280,213,1360,234.7L1440,256L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+          ></path>
+        </svg>
       </div>
     </div>
   );
