@@ -61,7 +61,7 @@ const Login = () => {
         <title>Artifact-Hub | Login</title>
       </Helmet>
       <div
-        className={`flex bg-white w-full container mx-auto max-w-5xl shadow-lg  rounded-lg overflow-hidden`}
+        className={`min-h-[600px] flex bg-white w-full container mx-auto max-w-5xl shadow-lg  rounded-lg overflow-hidden`}
       >
         <div
           className="hidden md:flex md:w-1/2 bg-primary text-white flex-col items-center justify-center p-8"

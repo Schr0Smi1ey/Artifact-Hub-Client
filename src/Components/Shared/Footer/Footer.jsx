@@ -24,7 +24,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center border-b border-gray-700 pb-8">
           {/* Branding Section */}
           <div data-aos="fade-right" className="text-center md:text-left">
-            <h3 className="text-4xl font-bold mb-3">
+            <h3 className="text-xl md:text-2xl lg:text-4xl font-bold mb-3">
               Artifact <span className="text-primary">Hub</span>
             </h3>
             <p className="text-base font-medium">

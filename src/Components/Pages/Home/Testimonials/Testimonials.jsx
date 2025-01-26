@@ -61,8 +61,8 @@ const Testimonials = () => {
             <h2 className="font-semibold text-primary text-xl lg:text-lg">
               Client Testimonials
             </h2>
-            <h1 className="font-volkhov font-bold text-4xl md:text-5xl text-black leading-[65px]">
-              What Our Visitors Say <br /> about Artifact Hub.
+            <h1 className="font-volkhov font-bold text-xl sm:text-3xl lg:text-4xl text-black leading-[65px]">
+              What Our Visitors Say
             </h1>
             <p className="text-gray-600 text-lg">
               Discover how Artifact Hub has connected collectors, researchers,

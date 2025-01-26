@@ -119,7 +119,7 @@ const AddArtifact = () => {
             d="M0,288L80,282.7C160,277,320,267,480,240C640,213,800,171,960,170.7C1120,171,1280,213,1360,234.7L1440,256L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
           ></path>
         </svg>
-        <div className="container mx-auto">
+        <div className="container px-4 mx-auto">
           <h1
             data-aos="zoom-in"
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-primary"
@@ -136,7 +136,7 @@ const AddArtifact = () => {
         </div>
       </div>
 
-      <div className="bg-white pt-10 pb-24 md:pb-32 2xl:pb-52">
+      <div className="bg-white pt-10 pb-24 px-4 md:pb-32 2xl:pb-52">
         <div className="container mx-auto">
           <form
             onSubmit={handleAddArtifact}

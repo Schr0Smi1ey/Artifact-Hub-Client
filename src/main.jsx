@@ -38,7 +38,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/Artifacts/${params.id}`),
+          fetch(
+            `https://artifact-hub-server.vercel.app/Artifacts/${params.id}`
+          ),
       },
       {
         path: "/add-artifact",

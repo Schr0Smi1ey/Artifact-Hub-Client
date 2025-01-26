@@ -105,7 +105,7 @@ const SignUp = () => {
         <title>Artifact-Hub | Sign Up</title>
       </Helmet>
       <div
-        className={`flex rounded-lg container mx-auto shadow-xl w-full max-w-5xl overflow-hidden`}
+        className={`min-h-[450px] flex rounded-lg container mx-auto shadow-xl w-full max-w-5xl overflow-hidden`}
       >
         <div
           data-aos="fade-right"

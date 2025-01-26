@@ -43,10 +43,10 @@ const AboutUs = () => {
         </svg>
         <div className="container mx-auto">
           <header data-aos="fade-left" className="text-center mb-10">
-            <h1 className="text-5xl text-white font-bold mb-3">
+            <h1 className="text-xl md:text-3xl lg:text-5xl text-white font-bold mb-3">
               About <span className="text-primary">Artifact Hub</span>
             </h1>
-            <p className="w-[80%] mx-auto text-lg text-gray-400 mt-2">
+            <p className="w-[80%] mx-auto text-xs md:text-base lg:text-lg text-gray-400 mt-2">
               Discover the world&apos;s most fascinating historical artifacts
               with Artifact Hub. Uniting the past and present, one artifact at a
               time.
@@ -54,11 +54,11 @@ const AboutUs = () => {
           </header>
         </div>
       </div>
-      <div className="bg-white  flex flex-col items-center">
-        <div className="container mx-auto">
+      <div className="bg-white flex flex-col items-center">
+        <div className="container px-4 mx-auto">
           <section
             data-aos="zoom-in"
-            className="max-w-5xl mx-auto px-4 py-8 rounded-lg"
+            className="md:max-w-5xl mx-auto px-4 py-8 rounded-lg"
           >
             <div className="relative mb-12 py-16 px-8 md:px-16 lg:px-24 rounded-3xl shadow-2xl bg-gradient-to-br from-gray-900 via-black to-gray-800 max-w-5xl mx-auto overflow-hidden">
               <div className="absolute inset-0">
@@ -73,7 +73,7 @@ const AboutUs = () => {
               <div className="relative z-10 text-center">
                 <h2
                   data-aos="fade-left"
-                  className="text-5xl font-bold text-white mb-6 tracking-tight"
+                  className="text-xl md:text-3xl lg:text-5xl font-bold text-white mb-6 tracking-tight"
                 >
                   Our Mission
                 </h2>
@@ -84,7 +84,7 @@ const AboutUs = () => {
               </div>
 
               {/* Description */}
-              <div className="relative z-10 text-lg md:text-xl text-gray-300 leading-relaxed space-y-8 mt-10">
+              <div className="relative z-10 text-xs md:text-base lg:text-xl text-gray-300 leading-relaxed space-y-8 mt-10">
                 <p data-aos="fade-up" className="px-4">
                   At{" "}
                   <span className="text-yellow-500 font-bold">
@@ -121,7 +121,7 @@ const AboutUs = () => {
                 <div className="mb-10">
                   <h2
                     data-aos="fade-left"
-                    className="text-5xl md:text-6xl font-extrabold text-yellow-800 leading-tight"
+                    className="text-xl md:text-3xl lg:text-5xl font-extrabold text-yellow-800 leading-tight"
                   >
                     Our Story
                   </h2>
@@ -131,7 +131,7 @@ const AboutUs = () => {
                   ></div>
                 </div>
 
-                <div className="space-y-6 text-lg md:text-xl leading-relaxed">
+                <div className="space-y-6 text-xs md:text-base lg:text-xl leading-relaxed">
                   <p data-aos="fade-up" className="px-2 md:px-0">
                     At{" "}
                     <span className="font-bold text-yellow-700">
@@ -187,7 +187,7 @@ const AboutUs = () => {
             {/* Section Title */}
             <h2
               data-aos="fade-left"
-              className="text-4xl md:text-5xl font-serif font-extrabold mb-8 relative z-10"
+              className="text-xl md:text-3xl lg:text-5xl font-serif font-extrabold mb-8 relative z-10"
             >
               Partners & Sponsors
             </h2>
@@ -196,7 +196,7 @@ const AboutUs = () => {
             <p
               data-aos="fade-left"
               data-aos-delay="200"
-              className="text-lg text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto relative z-10"
+              className="text-xs md:text-base lg:text-lg text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto relative z-10"
             >
               Artifact Hub is proudly supported by museums, cultural
               institutions, and historical societies from around the world, all
@@ -266,7 +266,7 @@ const AboutUs = () => {
             </div>
             <div className="relative z-10">
               {/* Content inside the rounded container */}
-              <h2 className="text-4xl font-extrabold text-white mb-8">
+              <h2 className="text-xl md:text-2xl lg:text-4xl font-extrabold text-white mb-8">
                 Meet the Founder
               </h2>
               <div className="flex flex-col md:flex-row items-center justify-between gap-12">
@@ -293,7 +293,7 @@ const AboutUs = () => {
                   </p>
                   <p
                     data-aos="fade-left"
-                    className="text-lg leading-relaxed mb-6"
+                    className="text-xs md:text-base leading-relaxed mb-6"
                   >
                     Sarafat Karim is the visionary behind Artifact Hub,
                     dedicated to making history accessible and engaging for
@@ -344,7 +344,7 @@ const AboutUs = () => {
             </div>
           </div>
           {/* Subscribe Section */}
-          <section className="container w-[93%] relative mx-auto mt-20 bg-white pt-10 pb-20 md:pb-32 lg:pb-52">
+          <section className="relative mx-auto mt-20 bg-white pt-10 pb-20 md:pb-32 lg:pb-52">
             {/* Email Icon */}
             <div
               data-aos="fade-down"
@@ -370,7 +370,7 @@ const AboutUs = () => {
               <h1
                 data-aos="fade-up"
                 data-aos-delay="300"
-                className="text-center font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-12"
+                className="text-center font-serif text-2xl md:text-3xl lg:text-4xl text-white mb-5 md:mb-8 lg:mb-12"
               >
                 Join the <span className="text-yellow-600">Artifact Hub</span>{" "}
                 Community
@@ -384,9 +384,9 @@ const AboutUs = () => {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="block w-4/5 lg:w-2/5 xl:w-1/3 bg-white font-semibold p-4 pl-12 rounded-lg shadow-lg focus:outline-none"
+                  className="block w-4/5 lg:w-2/5 xl:w-1/3 bg-white font-semibold px-4 py-2 pl-8 rounded-lg shadow-lg focus:outline-none"
                 />
-                <button className="mt-6 md:mt-0 bg-transparent border-2 border-white text-white hover:bg-white hover:text-black transition-all border-opacity-50 p-4 px-8 rounded-lg font-semibold text-lg shadow-lg">
+                <button className="mt-2 md:mt-0 bg-transparent border-2 border-white text-white hover:bg-white hover:text-black transition-all border-opacity-50 px-4 py-[4px] rounded-lg font-semibold text-lg shadow-lg">
                   Subscribe
                 </button>
               </div>
