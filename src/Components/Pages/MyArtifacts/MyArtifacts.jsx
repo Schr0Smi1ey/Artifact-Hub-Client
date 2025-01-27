@@ -57,17 +57,54 @@ const MyArtifacts = () => {
     { label: "Fossil", value: "Fossil" },
     { label: "Stele", value: "Stele" },
   ];
+  const [numberOfArtifacts, setNumberOfArtifacts] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [artifactsPerPage, setArtifactsPerPage] = useState(6);
+  const numberOfPages = Math.ceil(numberOfArtifacts / artifactsPerPage);
+  const pages = Array.from({ length: numberOfPages }, (_, i) => i + 1);
+  const handleArtifactsPerPage = (e) => {
+    const val = parseInt(e.target.value);
+    setArtifactsPerPage(val);
+    setCurrentPage(1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  useEffect(() => {
+    axiosSecure(`/MyArtifactCount?addedBy=${user?.email}`)
+      .then((res) => {
+        setNumberOfArtifacts(res.data.count);
+      })
+      .catch((error) => Toast(error.message, "error"))
+      .finally(() => setLoading(false));
+  });
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 500 });
   }, [artifacts]);
   useEffect(() => {
+    customAxios;
+  });
+  useEffect(() => {
     axiosSecure
-      .get(`/my-artifacts?addedBy=${user?.email}`)
+      .get(
+        `/MyArtifacts?addedBy=${user?.email}&page=${
+          currentPage - 1
+        }&size=${artifactsPerPage}`
+      )
       .then((res) => setArtifacts(res.data))
       .catch((error) => Toast(error.message, "error"))
       .finally(() => setLoading(false));
-  }, [Toast, user?.email, axiosSecure, updated]);
+  }, [Toast, user?.email, axiosSecure, updated, currentPage, artifactsPerPage]);
 
   let filteredArtifacts = artifacts.filter((artifact) =>
     artifact.artifactName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -200,57 +237,105 @@ const MyArtifacts = () => {
                   No artifacts found for this name.
                 </p>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {filteredArtifacts.map((artifact, index) => (
-                    <div
-                      key={index}
-                      className={`flex ${
-                        theme === "dark" ? "bg-gray-950" : "bg-white"
-                      } flex-col rounded-lg shadow-lg p-2 md:p-3 lg:p-4`}
-                    >
-                      <img
-                        src={artifact.artifactImage}
-                        alt={artifact.artifactName}
-                        className="border-2 border-gray-100 mx-auto object-cover rounded-lg mb-4"
-                      />
-                      <div className="flex-grow">
-                        <h3 className="font-bold text-xl mb-2">
-                          {artifact.artifactName}
-                        </h3>
-                        <p
-                          className={`flex flex-wrap items-center gap-2 ${
-                            theme === "dark" ? "text-white" : "text-gray-700"
-                          }`}
-                        >
-                          <FaClipboardList className="text-teal-500 text-xl" />
-                          <strong>Artifact Type:</strong>{" "}
-                          {artifact.artifactType}
-                        </p>
-                        <p
-                          className={`flex flex-wrap items-center gap-2 ${
-                            theme === "dark" ? "text-white" : "text-gray-700"
-                          }`}
-                        >
-                          <BiTimeFive className="text-blue-500 text-xl" />
-                          <strong>Created At:</strong> {artifact.createdAt}
-                        </p>
+                <div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {filteredArtifacts.map((artifact, index) => (
+                      <div
+                        key={index}
+                        className={`flex ${
+                          theme === "dark" ? "bg-gray-950" : "bg-white"
+                        } flex-col rounded-lg shadow-lg p-2 md:p-3 lg:p-4`}
+                      >
+                        <img
+                          src={artifact.artifactImage}
+                          alt={artifact.artifactName}
+                          className="border-2 border-gray-100 mx-auto object-cover rounded-lg mb-4"
+                        />
+                        <div className="flex-grow">
+                          <h3 className="font-bold text-xl mb-2">
+                            {artifact.artifactName}
+                          </h3>
+                          <p
+                            className={`flex flex-wrap items-center gap-2 ${
+                              theme === "dark" ? "text-white" : "text-gray-700"
+                            }`}
+                          >
+                            <FaClipboardList className="text-teal-500 text-xl" />
+                            <strong>Artifact Type:</strong>{" "}
+                            {artifact.artifactType}
+                          </p>
+                          <p
+                            className={`flex flex-wrap items-center gap-2 ${
+                              theme === "dark" ? "text-white" : "text-gray-700"
+                            }`}
+                          >
+                            <BiTimeFive className="text-blue-500 text-xl" />
+                            <strong>Created At:</strong> {artifact.createdAt}
+                          </p>
+                        </div>
+                        <div className="flex gap-3 mt-4">
+                          <button
+                            onClick={() => handleDelete(artifact._id)}
+                            className="px-4 py-1 rounded-md bg-red-500 text-white font-medium"
+                          >
+                            Delete
+                          </button>
+                          <button
+                            onClick={() => handleUpdate(artifact)}
+                            className="px-4 py-1 bg-sky-500 text-white rounded-md"
+                          >
+                            Update
+                          </button>
+                        </div>
                       </div>
-                      <div className="flex gap-3 mt-4">
+                    ))}
+                  </div>
+                  <div className="mx-auto flex flex-col items-center mt-14 space-y-4">
+                    <div className="flex items-center space-x-2">
+                      <button
+                        className="font-semibold px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700"
+                        onClick={handlePrevPage}
+                      >
+                        Prev
+                      </button>
+                      {pages.map((page) => (
                         <button
-                          onClick={() => handleDelete(artifact._id)}
-                          className="px-4 py-1 rounded-md bg-red-500 text-white font-medium"
+                          key={page}
+                          className={`font-semibold px-4 py-2 rounded-full ${
+                            currentPage === page
+                              ? "bg-primary text-white"
+                              : "bg-gray-100 text-primary hover:bg-primary hover:text-white"
+                          }`}
+                          onClick={() => setCurrentPage(page)}
                         >
-                          Delete
+                          {page}
                         </button>
-                        <button
-                          onClick={() => handleUpdate(artifact)}
-                          className="px-4 py-1 bg-sky-500 text-white rounded-md"
-                        >
-                          Update
-                        </button>
-                      </div>
+                      ))}
+                      <button
+                        className="font-semibold px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700"
+                        onClick={handleNextPage}
+                      >
+                        Next
+                      </button>
                     </div>
-                  ))}
+
+                    <div className="flex items-center space-x-2">
+                      <span className="text-gray-600 font-medium">Show:</span>
+                      <select
+                        value={artifactsPerPage}
+                        onChange={handleArtifactsPerPage}
+                        className="block input input-bordered w-fit p-2 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-primary focus:border-primary font-semibold"
+                      >
+                        <option value="6">6</option>
+                        <option value="9">9</option>
+                        <option value="12">12</option>
+                        <option value="15">15</option>
+                      </select>
+                      <span className="text-gray-600 font-medium">
+                        artifacts per page
+                      </span>
+                    </div>
+                  </div>
                 </div>
               )}
               <dialog

@@ -9,19 +9,48 @@ const AllArtifacts = () => {
   const [artifacts, setArtifacts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
-  const { Toast } = useContext(AuthContext);
   const customAxios = useCustomAxios();
+  const { Toast } = useContext(AuthContext);
+  const [numberOfArtifacts, setNumberOfArtifacts] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [artifactsPerPage, setArtifactsPerPage] = useState(6);
+  const numberOfPages = Math.ceil(numberOfArtifacts / artifactsPerPage);
+  const pages = Array.from({ length: numberOfPages }, (_, i) => i + 1);
+  const handleArtifactsPerPage = (e) => {
+    const val = parseInt(e.target.value);
+    setArtifactsPerPage(val);
+    setCurrentPage(1);
+  };
 
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
-    customAxios("/Artifacts")
+    customAxios(`/Artifacts?page=${currentPage - 1}&size=${artifactsPerPage}`)
       .then((res) => setArtifacts(res.data))
       .catch((error) => Toast(error.message, "error"))
       .finally(() => setLoading(false));
-  }, [Toast, customAxios]);
+  }, [Toast, customAxios, currentPage, artifactsPerPage]);
 
+  useEffect(() => {
+    customAxios(`/ArtifactCount`)
+      .then((res) => {
+        setNumberOfArtifacts(res.data.count);
+      })
+      .catch((error) => Toast(error.message, "error"))
+      .finally(() => setLoading(false));
+  });
   const filteredArtifacts = artifacts.filter((artifact) =>
     artifact?.artifactName?.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -73,10 +102,58 @@ const AllArtifacts = () => {
               <BounceLoader color="#fb9c28" size={110} />
             </div>
           ) : filteredArtifacts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredArtifacts.map((artifact) => (
-                <Artifact key={artifact._id} artifact={artifact} />
-              ))}
+            <div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredArtifacts.map((artifact) => (
+                  <Artifact key={artifact._id} artifact={artifact} />
+                ))}
+              </div>
+              <div className="mx-auto flex flex-col items-center mt-14 space-y-4">
+                <div className="flex items-center space-x-2">
+                  <button
+                    className="font-semibold px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700"
+                    onClick={handlePrevPage}
+                  >
+                    Prev
+                  </button>
+                  {pages.map((page) => (
+                    <button
+                      key={page}
+                      className={`font-semibold px-4 py-2 rounded-full ${
+                        currentPage === page
+                          ? "bg-primary text-white"
+                          : "bg-gray-100 text-primary hover:bg-primary hover:text-white"
+                      }`}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                  <button
+                    className="font-semibold px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700"
+                    onClick={handleNextPage}
+                  >
+                    Next
+                  </button>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <span className="text-gray-600 font-medium">Show:</span>
+                  <select
+                    value={artifactsPerPage}
+                    onChange={handleArtifactsPerPage}
+                    className="block input input-bordered w-fit p-2 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-primary focus:border-primary font-semibold"
+                  >
+                    <option value="6">6</option>
+                    <option value="9">9</option>
+                    <option value="12">12</option>
+                    <option value="15">15</option>
+                  </select>
+                  <span className="text-gray-600 font-medium">
+                    artifacts per page
+                  </span>
+                </div>
+              </div>
             </div>
           ) : (
             <p className="text-5xl text-center font-bold text-red-500 mt-5">

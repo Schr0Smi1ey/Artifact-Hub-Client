@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { FiHeart } from "react-icons/fi";
 import { MdOutlineLocationOn } from "react-icons/md";
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
+import { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -15,8 +14,6 @@ const Artifact = ({ artifact }) => {
     likeCount,
     presentLocation,
   } = artifact;
-  // eslint-disable-next-line no-unused-vars
-  const { theme } = useContext(AuthContext);
 
   useEffect(() => {
     Aos.init({ duration: 700 });

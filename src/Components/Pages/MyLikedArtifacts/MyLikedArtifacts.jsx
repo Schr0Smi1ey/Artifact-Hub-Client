@@ -10,17 +10,51 @@ const MyLikedArtifacts = () => {
   const [loading, setLoading] = useState(true);
   const { Toast, user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+  const [numberOfArtifacts, setNumberOfArtifacts] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [artifactsPerPage, setArtifactsPerPage] = useState(6);
+  const numberOfPages = Math.ceil(numberOfArtifacts / artifactsPerPage);
+  const pages = Array.from({ length: numberOfPages }, (_, i) => i + 1);
+  const handleArtifactsPerPage = (e) => {
+    const val = parseInt(e.target.value);
+    setArtifactsPerPage(val);
+    setCurrentPage(1);
+  };
 
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  useEffect(() => {
+    axiosSecure(`/MyLikedArtifactCount?user_email=${user?.email}`)
+      .then((res) => {
+        setNumberOfArtifacts(res.data.count);
+        console.log(res.data.count);
+      })
+      .catch((error) => Toast(error.message, "error"))
+      .finally(() => setLoading(false));
+  });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
     axiosSecure
-      .get(`/liked-artifacts?user_email=${user.email}`)
+      .get(
+        `/liked-artifacts?user_email=${user.email}&page=${
+          currentPage - 1
+        }&size=${artifactsPerPage}`
+      )
       .then((res) => setLikedArtifacts(res.data))
       .catch((error) => Toast(error.message, "error"))
       .finally(() => setLoading(false));
-  }, [user.email, Toast, axiosSecure]);
+  }, [user.email, Toast, axiosSecure, currentPage, artifactsPerPage]);
 
   return (
     <div className={`bg-black pt-32 md:pt-40 lg:pt-52`}>
@@ -62,11 +96,58 @@ const MyLikedArtifacts = () => {
               <BounceLoader color="#fb9c28" size={110} />
             </div>
           ) : likedArtifacts.length > 0 ? (
-            // Display liked artifacts in a responsive grid
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {likedArtifacts.map((artifact) => (
-                <Artifact key={artifact._id} artifact={artifact} />
-              ))}
+            <div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {likedArtifacts.map((artifact) => (
+                  <Artifact key={artifact._id} artifact={artifact} />
+                ))}
+              </div>
+              <div className="mx-auto flex flex-col items-center mt-14 space-y-4">
+                <div className="flex items-center space-x-2">
+                  <button
+                    className="font-semibold px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700"
+                    onClick={handlePrevPage}
+                  >
+                    Prev
+                  </button>
+                  {pages.map((page) => (
+                    <button
+                      key={page}
+                      className={`font-semibold px-4 py-2 rounded-full ${
+                        currentPage === page
+                          ? "bg-primary text-white"
+                          : "bg-gray-100 text-primary hover:bg-primary hover:text-white"
+                      }`}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                  <button
+                    className="font-semibold px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700"
+                    onClick={handleNextPage}
+                  >
+                    Next
+                  </button>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <span className="text-gray-600 font-medium">Show:</span>
+                  <select
+                    value={artifactsPerPage}
+                    onChange={handleArtifactsPerPage}
+                    className="block input input-bordered w-fit p-2 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-primary focus:border-primary font-semibold"
+                  >
+                    <option value="6">6</option>
+                    <option value="9">9</option>
+                    <option value="12">12</option>
+                    <option value="15">15</option>
+                  </select>
+                  <span className="text-gray-600 font-medium">
+                    artifacts per page
+                  </span>
+                </div>
+              </div>
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center mt-12">
