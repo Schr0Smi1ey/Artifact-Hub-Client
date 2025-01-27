@@ -66,7 +66,7 @@ const AllArtifacts = () => {
         </div>
       </div>
 
-      <div className="bg-white pt-10 pb-32 md:pb-40 lg:pb-52">
+      <div className="bg-white pt-10 pb-24 px-4 md:pb-32 2xl:pb-[9%]">
         <div className={`container px-4 mx-auto`}>
           {loading ? (
             <div className="flex items-center justify-center min-h-screen">

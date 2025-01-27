@@ -136,7 +136,7 @@ const AddArtifact = () => {
         </div>
       </div>
 
-      <div className="bg-white pt-10 pb-24 px-4 md:pb-32 2xl:pb-52">
+      <div className="bg-white pt-10 pb-24 px-4 md:pb-32 2xl:pb-[9%]">
         <div className="container mx-auto">
           <form
             onSubmit={handleAddArtifact}
