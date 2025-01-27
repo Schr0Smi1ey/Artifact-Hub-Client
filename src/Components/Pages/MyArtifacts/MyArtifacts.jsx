@@ -84,8 +84,7 @@ const MyArtifacts = () => {
       .then((res) => {
         setNumberOfArtifacts(res.data.count);
       })
-      .catch((error) => Toast(error.message, "error"))
-      .finally(() => setLoading(false));
+      .catch((error) => Toast(error.message, "error"));
   });
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -48,8 +48,7 @@ const AllArtifacts = () => {
       .then((res) => {
         setNumberOfArtifacts(res.data.count);
       })
-      .catch((error) => Toast(error.message, "error"))
-      .finally(() => setLoading(false));
+      .catch((error) => Toast(error.message, "error"));
   });
   const filteredArtifacts = artifacts.filter((artifact) =>
     artifact?.artifactName?.toLowerCase().includes(searchQuery.toLowerCase())
