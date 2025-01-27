@@ -225,13 +225,13 @@ const MyArtifacts = () => {
         <div className="container mx-auto">
           {loading ? (
             <div className="flex items-center justify-center min-h-screen">
-              <BounceLoader color="#fb9c28" size={110} />
+              <BounceLoader color="#A94A4A" size={110} />
             </div>
           ) : (
             <div>
               {artifacts.length === 0 ? (
                 <p className="text-5xl text-center font-bold text-red-500 mt-5">
-                  You have not added any artifacts yet.
+                  No artifacts found!
                 </p>
               ) : (
                 <div>
@@ -417,7 +417,7 @@ const MyArtifacts = () => {
                           position: "relative",
                           zIndex: 50,
                           borderColor: state.isFocused
-                            ? "#fb9c28"
+                            ? "#A94A4A"
                             : provided.borderColor,
                           borderWidth: "3px",
                           transition:
@@ -430,7 +430,7 @@ const MyArtifacts = () => {
                         option: (provided, state) => ({
                           ...provided,
                           backgroundColor: state.isSelected
-                            ? "#fb9c28"
+                            ? "#A94A4A"
                             : state.isFocused
                             ? "rgba(251, 156, 40, 0.8)"
                             : "transparent",

@@ -91,7 +91,7 @@ const MyLikedArtifacts = () => {
           {loading ? (
             // Loader when fetching data
             <div className="flex items-center justify-center min-h-[300px]">
-              <BounceLoader color="#fb9c28" size={110} />
+              <BounceLoader color="#A94A4A" size={110} />
             </div>
           ) : likedArtifacts.length > 0 ? (
             <div>

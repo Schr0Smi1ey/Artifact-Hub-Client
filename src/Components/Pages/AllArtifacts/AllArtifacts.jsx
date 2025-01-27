@@ -36,13 +36,10 @@ const AllArtifacts = () => {
     }
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   // Fetch artifacts from the server based on current page, size, and search query
   useEffect(() => {
     setLoading(true);
+    window.scrollTo(0, 0);
     const queryParam = searchQuery ? `&search=${searchQuery}` : "";
     customAxios(
       `/Artifacts?page=${currentPage - 1}&size=${artifactsPerPage}${queryParam}`
@@ -100,7 +97,7 @@ const AllArtifacts = () => {
         <div className={`container px-4 mx-auto`}>
           {loading ? (
             <div className="flex items-center justify-center min-h-screen">
-              <BounceLoader color="#fb9c28" size={110} />
+              <BounceLoader color="#A94A4A" size={110} />
             </div>
           ) : artifacts.length > 0 ? (
             <div>
@@ -161,6 +158,19 @@ const AllArtifacts = () => {
             </p>
           )}
         </div>
+      </div>
+      <div className="w-screen relative mx-auto text-center">
+        <svg
+          className="absolute w-full z-30 bottom-[-210px] text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 170.68 1440 149.32"
+        >
+          <path
+            fill="#000000"
+            fillOpacity="1"
+            d="M0,288L80,282.7C160,277,320,267,480,240C640,213,800,171,960,170.7C1120,171,1280,213,1360,234.7L1440,256L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+          ></path>
+        </svg>
       </div>
     </div>
   );

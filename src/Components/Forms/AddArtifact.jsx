@@ -116,7 +116,7 @@ const AddArtifact = () => {
       </Helmet>
       {loading ? (
         <div className="flex items-center justify-center min-h-screen">
-          <BounceLoader color="#fb9c28" size={110} />
+          <BounceLoader color="#A94A4A" size={110} />
         </div>
       ) : (
         <div>
@@ -169,7 +169,7 @@ const AddArtifact = () => {
                     value={artifactData.artifactName}
                     onChange={handleInputChange}
                     placeholder="Enter artifact name"
-                    className="input text-black input-bordered w-full focus:ring-primary focus:border-[3px] focus:border-primary focus:ring-primary focus:border-[3px] focus:border-primary"
+                    className="input text-black input-bordered w-full focus:ring-primary focus:border-[3px] focus:border-primary"
                     required
                   />
                 </div>
@@ -227,7 +227,7 @@ const AddArtifact = () => {
                       position: "relative",
                       zIndex: 50,
                       borderColor: state.isFocused
-                        ? "#fb9c28"
+                        ? "#A94A4A"
                         : provided.borderColor,
                       borderWidth: "3px",
                       transition:
@@ -240,7 +240,7 @@ const AddArtifact = () => {
                     option: (provided, state) => ({
                       ...provided,
                       backgroundColor: state.isSelected
-                        ? "#fb9c28"
+                        ? "#A94A4A"
                         : state.isFocused
                         ? "rgba(251, 156, 40, 0.8)"
                         : "transparent",
