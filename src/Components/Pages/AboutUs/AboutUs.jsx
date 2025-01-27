@@ -73,7 +73,7 @@ const AboutUs = () => {
               <div className="relative z-10 text-center">
                 <h2
                   data-aos="fade-left"
-                  className="text-xl md:text-3xl lg:text-5xl font-bold text-white"
+                  className="text-2xl md:text-3xl lg:text-5xl font-bold text-white"
                 >
                   Our Mission
                 </h2>
@@ -84,7 +84,7 @@ const AboutUs = () => {
               </div>
 
               {/* Description */}
-              <div className="relative z-10 text-xs md:text-base lg:text-xl text-gray-300 leading-relaxed space-y-8 mt-10">
+              <div className="relative z-10 text-sm md:text-base lg:text-xl text-gray-300 leading-relaxed space-y-8 mt-10">
                 <p data-aos="fade-up" className="px-4">
                   At{" "}
                   <span className="text-primary/80 font-bold">
@@ -121,7 +121,7 @@ const AboutUs = () => {
                 <div className="mb-10">
                   <h2
                     data-aos="fade-left"
-                    className="text-xl md:text-3xl lg:text-5xl font-extrabold text-primary leading-tight"
+                    className="text-2xl md:text-3xl lg:text-5xl font-extrabold text-primary leading-tight"
                   >
                     Our Story
                   </h2>
@@ -131,7 +131,7 @@ const AboutUs = () => {
                   ></div>
                 </div>
 
-                <div className="space-y-6 text-xs md:text-base lg:text-xl leading-relaxed">
+                <div className="space-y-6 text-sm md:text-base lg:text-xl leading-relaxed">
                   <p data-aos="fade-up" className="px-2 md:px-0">
                     At{" "}
                     <span className="font-bold text-primary/80">
@@ -159,7 +159,7 @@ const AboutUs = () => {
                   data-aos="fade-up"
                   className="mt-10 flex justify-center md:justify-start"
                 >
-                  <button className="px-8 py-3 bg-primary/80 hover:bg-primary text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105 focus:ring-4 focus:ring-yellow-400 focus:ring-opacity-50">
+                  <button className="px-3 py-1 md:px-4 md:py-2 lg:px-8 lg:py-3 bg-primary/80 hover:bg-primary text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105 focus:ring-4 focus:ring-yellow-400 focus:ring-opacity-50">
                     Explore Our Journey
                   </button>
                 </div>
@@ -187,7 +187,7 @@ const AboutUs = () => {
             {/* Section Title */}
             <h2
               data-aos="fade-left"
-              className="text-xl md:text-3xl lg:text-5xl font-serif font-extrabold mb-8 relative z-10"
+              className="text-2xl md:text-3xl lg:text-5xl font-serif font-extrabold mb-8 relative z-10"
             >
               Partners & Sponsors
             </h2>
@@ -196,7 +196,7 @@ const AboutUs = () => {
             <p
               data-aos="fade-left"
               data-aos-delay="200"
-              className="text-xs md:text-base lg:text-lg text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto relative z-10"
+              className="text-sm md:text-base lg:text-lg text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto relative z-10"
             >
               Artifact Hub is proudly supported by museums, cultural
               institutions, and historical societies from around the world, all
@@ -266,7 +266,7 @@ const AboutUs = () => {
             </div>
             <div className="relative z-10">
               {/* Content inside the rounded container */}
-              <h2 className="text-xl md:text-2xl lg:text-4xl font-extrabold text-white mb-8">
+              <h2 className="text-2xl md:text-2xl lg:text-4xl font-extrabold text-white mb-8">
                 Meet the Founder
               </h2>
               <div className="flex flex-col md:flex-row items-center justify-between gap-12">
@@ -293,7 +293,7 @@ const AboutUs = () => {
                   </p>
                   <p
                     data-aos="fade-left"
-                    className="text-xs md:text-base leading-relaxed mb-6"
+                    className="text-sm md:text-base leading-relaxed mb-6"
                   >
                     Sarafat Karim is the visionary behind Artifact Hub,
                     dedicated to making history accessible and engaging for
