@@ -156,7 +156,7 @@ const AddArtifact = () => {
                 value={artifactData.artifactName}
                 onChange={handleInputChange}
                 placeholder="Enter artifact name"
-                className="input text-black input-bordered w-full"
+                className="input text-black input-bordered w-full focus:ring-primary focus:border-[3px] focus:border-primary focus:ring-primary focus:border-[3px] focus:border-primary"
                 required
               />
             </div>
@@ -175,7 +175,7 @@ const AddArtifact = () => {
                 value={artifactData.artifactImage}
                 onChange={handleInputChange}
                 placeholder="Enter artifact image URL"
-                className="input text-black input-bordered w-full"
+                className="input text-black input-bordered w-full focus:ring-primary focus:border-[3px] focus:border-primary"
                 required
               />
             </div>
@@ -195,12 +195,12 @@ const AddArtifact = () => {
                 artifactTypes.find(
                   (option) => option.value === artifactData.artifactType
                 ) || null
-              } // Ensure null is passed if no option is selected
+              }
               onChange={(selectedOption) => {
                 handleInputChange({
                   target: {
                     name: "artifactType",
-                    value: selectedOption ? selectedOption.value : "", // Update value based on selection
+                    value: selectedOption ? selectedOption.value : "",
                   },
                 });
               }}
@@ -209,10 +209,15 @@ const AddArtifact = () => {
               placeholder="Choose Artifact Type"
               isSearchable
               styles={{
-                control: (provided) => ({
+                control: (provided, state) => ({
                   ...provided,
                   position: "relative",
                   zIndex: 50,
+                  borderColor: state.isFocused
+                    ? "#fb9c28"
+                    : provided.borderColor,
+                  borderWidth: "3px",
+                  transition: "border-color 0.2s ease, box-shadow 0.2s ease",
                 }),
                 menu: (provided) => ({
                   ...provided,
@@ -221,9 +226,9 @@ const AddArtifact = () => {
                 option: (provided, state) => ({
                   ...provided,
                   backgroundColor: state.isSelected
-                    ? "#1D4ED8"
+                    ? "#fb9c28"
                     : state.isFocused
-                    ? "rgba(29, 78, 216, 0.8)"
+                    ? "rgba(251, 156, 40, 0.8)"
                     : "transparent",
                   color: state.isSelected ? "white" : "black",
                   cursor: "pointer",
@@ -244,7 +249,7 @@ const AddArtifact = () => {
                 value={artifactData.historicalContext}
                 onChange={handleInputChange}
                 placeholder="Describe the historical context"
-                className="textarea text-black textarea-bordered w-full"
+                className="textarea text-black textarea-bordered w-full focus:ring-primary focus:border-[3px] focus:border-primary"
                 required
               ></textarea>
             </div>
@@ -263,7 +268,7 @@ const AddArtifact = () => {
                 value={artifactData.createdAt}
                 onChange={handleInputChange}
                 placeholder="e.g., 100 BC"
-                className="input text-black input-bordered w-full"
+                className="input text-black input-bordered w-full focus:ring-primary focus:border-[3px] focus:border-primary"
                 required
               />
             </div>
@@ -282,7 +287,7 @@ const AddArtifact = () => {
                 value={artifactData.discoveredAt}
                 onChange={handleInputChange}
                 placeholder="e.g., 1799"
-                className="input text-black input-bordered w-full"
+                className="input text-black input-bordered w-full focus:ring-primary focus:border-[3px] focus:border-primary"
               />
             </div>
 
@@ -300,7 +305,7 @@ const AddArtifact = () => {
                 value={artifactData.discoveredBy}
                 onChange={handleInputChange}
                 placeholder="Enter the name of the discoverer"
-                className="input text-black input-bordered w-full"
+                className="input text-black input-bordered w-full focus:ring-primary focus:border-[3px] focus:border-primary"
               />
             </div>
 
@@ -318,7 +323,7 @@ const AddArtifact = () => {
                 value={artifactData.presentLocation}
                 onChange={handleInputChange}
                 placeholder="Enter the current location"
-                className="input text-black input-bordered w-full"
+                className="input text-black input-bordered w-full focus:ring-primary focus:border-[3px] focus:border-primary"
               />
             </div>
 
@@ -329,7 +334,7 @@ const AddArtifact = () => {
               <input
                 type="text"
                 value={artifactData.adderName}
-                className="input text-black input-bordered w-full"
+                className="input text-black input-bordered w-full focus:ring-primary focus:border-[3px] focus:border-primary"
                 readOnly
               />
             </div>
@@ -341,7 +346,7 @@ const AddArtifact = () => {
               <input
                 type="text"
                 value={artifactData.addedBy}
-                className="input input-bordered text-black w-full"
+                className="input input-bordered text-black w-full focus:ring-primary focus:border-[3px] focus:border-primary"
                 readOnly
               />
             </div>

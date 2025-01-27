@@ -10,6 +10,7 @@ import Aos from "aos";
 import { BounceLoader } from "react-spinners";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useCustomAxios from "../../../Hooks/useCustomAxios";
+import Select from "react-select";
 
 const MyArtifacts = () => {
   const { user, Toast, theme } = useContext(AuthContext);
@@ -30,6 +31,32 @@ const MyArtifacts = () => {
   });
   const axiosSecure = useAxiosSecure();
   const customAxios = useCustomAxios();
+  const artifactTypes = [
+    { label: "Pottery", value: "Pottery" },
+    { label: "Mosaic Art", value: "Mosaic Art" },
+    { label: "Jewelry", value: "Jewelry" },
+    { label: "Weapon", value: "Weapon" },
+    { label: "Funerary Items", value: "Funerary Items" },
+    { label: "Seals", value: "Seals" },
+    { label: "Stone Artifact", value: "Stone Artifact" },
+    { label: "Documents", value: "Documents" },
+    { label: "Sculpture", value: "Sculpture" },
+    { label: "Cave Art", value: "Cave Art" },
+    { label: "Reliefs", value: "Reliefs" },
+    { label: "Statue", value: "Statue" },
+    { label: "Armor", value: "Armor" },
+    { label: "Monument", value: "Monument" },
+    { label: "Statues", value: "Statues" },
+    { label: "Funerary Mask", value: "Funerary Mask" },
+    { label: "Ship", value: "Ship" },
+    { label: "Mechanical Device", value: "Mechanical Device" },
+    { label: "Textile Art", value: "Textile Art" },
+    { label: "Law Code", value: "Law Code" },
+    { label: "Manuscripts", value: "Manuscripts" },
+    { label: "Portrait", value: "Portrait" },
+    { label: "Fossil", value: "Fossil" },
+    { label: "Stele", value: "Stele" },
+  ];
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 500 });
@@ -230,7 +257,7 @@ const MyArtifacts = () => {
                 id="update_modal"
                 className="modal modal-bottom sm:modal-middle"
               >
-                <div className="modal-box w-full max-w-lg rounded-lg shadow-lg p-6">
+                <div className="modal-box w-full max-w-lg rounded-lg shadow-lg p-6 bg-black text-white">
                   <h2 className="text-2xl font-bold text-primary mb-4">
                     Update {artifactData.artifactName} Artifact
                   </h2>
@@ -238,7 +265,7 @@ const MyArtifacts = () => {
                     <div className="mb-3">
                       <label
                         htmlFor="artifactName"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-lg font-semibold mb-2"
                       >
                         Artifact Name
                       </label>
@@ -249,14 +276,14 @@ const MyArtifacts = () => {
                         value={artifactData.artifactName}
                         onChange={handleInputChange}
                         placeholder="Artifact Name"
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full text-black focus:ring-primary focus:border-[3px] focus:border-primary"
                       />
                     </div>
 
                     <div className="mb-3">
                       <label
                         htmlFor="artifactImage"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-lg font-semibold mb-2"
                       >
                         Artifact Image URL
                       </label>
@@ -267,39 +294,70 @@ const MyArtifacts = () => {
                         value={artifactData.artifactImage}
                         onChange={handleInputChange}
                         placeholder="Artifact Image URL"
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full text-black focus:ring-primary focus:border-[3px] focus:border-primary"
                       />
                     </div>
+                    <label
+                      className="block text-lg font-semibold mb-2"
+                      htmlFor="artifactImage"
+                    >
+                      Artifact Type
+                    </label>
 
-                    <div data-aos="fade-up" className="mb-4">
-                      <label
-                        className="block text-lg font-semibold mb-2"
-                        htmlFor="artifactType"
-                      >
-                        Artifact Type
-                      </label>
-                      <select
-                        id="artifactType"
-                        name="artifactType"
-                        value={artifactData.artifactType}
-                        onChange={handleInputChange}
-                        className="select select-bordered w-full"
-                        required
-                      >
-                        <option value="" disabled>
-                          Choose Artifact Type
-                        </option>
-                        <option value="Tools">Tools</option>
-                        <option value="Weapons">Weapons</option>
-                        <option value="Documents">Documents</option>
-                        <option value="Writings">Writings</option>
-                      </select>
-                    </div>
+                    <Select
+                      id="artifactType"
+                      name="artifactType"
+                      options={artifactTypes}
+                      value={
+                        artifactTypes.find(
+                          (option) => option.value === artifactData.artifactType
+                        ) || null
+                      }
+                      onChange={(selectedOption) => {
+                        handleInputChange({
+                          target: {
+                            name: "artifactType",
+                            value: selectedOption ? selectedOption.value : "",
+                          },
+                        });
+                      }}
+                      className="w-full mb-4"
+                      required
+                      placeholder="Choose Artifact Type"
+                      isSearchable
+                      styles={{
+                        control: (provided, state) => ({
+                          ...provided,
+                          position: "relative",
+                          zIndex: 50,
+                          borderColor: state.isFocused
+                            ? "#fb9c28"
+                            : provided.borderColor,
+                          borderWidth: "3px",
+                          transition:
+                            "border-color 0.2s ease, box-shadow 0.2s ease",
+                        }),
+                        menu: (provided) => ({
+                          ...provided,
+                          zIndex: 100,
+                        }),
+                        option: (provided, state) => ({
+                          ...provided,
+                          backgroundColor: state.isSelected
+                            ? "#fb9c28"
+                            : state.isFocused
+                            ? "rgba(251, 156, 40, 0.8)"
+                            : "transparent",
+                          color: state.isSelected ? "white" : "black",
+                          cursor: "pointer",
+                        }),
+                      }}
+                    />
 
                     <div className="mb-3">
                       <label
                         htmlFor="historicalContext"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-lg font-semibold mb-2"
                       >
                         Historical Context
                       </label>
@@ -309,14 +367,14 @@ const MyArtifacts = () => {
                         value={artifactData.historicalContext}
                         onChange={handleInputChange}
                         placeholder="Historical Context"
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full text-black focus:ring-primary focus:border-[3px] focus:border-primary"
                       ></textarea>
                     </div>
 
                     <div className="mb-3">
                       <label
                         htmlFor="createdAt"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-lg font-semibold mb-2"
                       >
                         Created At
                       </label>
@@ -327,14 +385,14 @@ const MyArtifacts = () => {
                         value={artifactData.createdAt}
                         onChange={handleInputChange}
                         placeholder="Created At"
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full text-black focus:ring-primary focus:border-[3px] focus:border-primary"
                       />
                     </div>
 
                     <div className="mb-3">
                       <label
                         htmlFor="discoveredAt"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-lg font-semibold mb-2"
                       >
                         Discovered At
                       </label>
@@ -345,14 +403,14 @@ const MyArtifacts = () => {
                         value={artifactData.discoveredAt}
                         onChange={handleInputChange}
                         placeholder="Discovered At"
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full text-black focus:ring-primary focus:border-[3px] focus:border-primary"
                       />
                     </div>
 
                     <div className="mb-3">
                       <label
                         htmlFor="discoveredBy"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-lg font-semibold mb-2"
                       >
                         Discovered By
                       </label>
@@ -363,14 +421,14 @@ const MyArtifacts = () => {
                         value={artifactData.discoveredBy}
                         onChange={handleInputChange}
                         placeholder="Discovered By"
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full text-black focus:ring-primary focus:border-[3px] focus:border-primary"
                       />
                     </div>
 
                     <div className="mb-3">
                       <label
                         htmlFor="presentLocation"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-lg font-semibold mb-2"
                       >
                         Present Location
                       </label>
@@ -381,7 +439,7 @@ const MyArtifacts = () => {
                         value={artifactData.presentLocation}
                         onChange={handleInputChange}
                         placeholder="Present Location"
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full text-black focus:ring-primary focus:border-[3px] focus:border-primary"
                       />
                     </div>
 
@@ -402,7 +460,7 @@ const MyArtifacts = () => {
                         }
                         className="px-6 py-2 bg-red-500 text-white rounded-md"
                       >
-                        Close
+                        Cancel
                       </button>
                     </div>
                   </form>
