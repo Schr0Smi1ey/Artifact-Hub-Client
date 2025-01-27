@@ -108,26 +108,28 @@ const AllArtifacts = () => {
                 ))}
               </div>
               <div className="mx-auto flex flex-col items-center mt-14 space-y-4">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center flex-wrap gap-2 justify-center space-x-2">
                   <button
                     className="font-semibold px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700"
                     onClick={handlePrevPage}
                   >
                     Prev
                   </button>
-                  {pages.map((page) => (
-                    <button
-                      key={page}
-                      className={`font-semibold px-4 py-2 rounded-full ${
-                        currentPage === page
-                          ? "bg-primary text-white"
-                          : "bg-gray-100 text-primary hover:bg-primary hover:text-white"
-                      }`}
-                      onClick={() => setCurrentPage(page)}
-                    >
-                      {page}
-                    </button>
-                  ))}
+                  <div className="flex space-x-2 gap-2 justify-center items-center flex-wrap">
+                    {pages.map((page) => (
+                      <button
+                        key={page}
+                        className={`font-semibold px-4 py-2 rounded-full ${
+                          currentPage === page
+                            ? "bg-primary text-white"
+                            : "bg-gray-100 text-primary hover:bg-primary hover:text-white"
+                        }`}
+                        onClick={() => setCurrentPage(page)}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                  </div>
                   <button
                     className="font-semibold px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700"
                     onClick={handleNextPage}
@@ -136,7 +138,7 @@ const AllArtifacts = () => {
                   </button>
                 </div>
 
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center flex-wrap justify-center space-x-2">
                   <span className="text-gray-600 font-medium">Show:</span>
                   <select
                     value={artifactsPerPage}
