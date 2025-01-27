@@ -13,7 +13,6 @@ const FeaturedArtifacts = () => {
     customAxios(`/Artifacts?page=${0}&size=${6}&search=featuredArtifacts`)
       .then((data) => {
         setArtifacts(data.data.artifacts || []);
-        console.log(data.data.artifacts);
       })
       .catch((err) => Toast(err.message, "error"));
   }, [Toast, customAxios]);
