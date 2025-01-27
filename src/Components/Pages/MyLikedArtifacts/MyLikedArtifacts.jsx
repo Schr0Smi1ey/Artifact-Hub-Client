@@ -36,7 +36,6 @@ const MyLikedArtifacts = () => {
     axiosSecure(`/MyLikedArtifactCount?user_email=${user?.email}`)
       .then((res) => {
         setNumberOfArtifacts(res.data.count);
-        console.log(res.data.count);
       })
       .catch((error) => Toast(error.message, "error"));
   });

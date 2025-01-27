@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const AboutArtifacts = () => {
   return (
     <div className="container mx-auto py-16 px-6 text-center bg-white rounded-lg shadow-md">
-      <h2 className="text-4xl font-extrabold mb-4">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">
         About the{" "}
         <span className="text-primary">Mysterious World of Artifacts</span>
       </h2>

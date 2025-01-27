@@ -73,12 +73,12 @@ const AboutUs = () => {
               <div className="relative z-10 text-center">
                 <h2
                   data-aos="fade-left"
-                  className="text-xl md:text-3xl lg:text-5xl font-bold text-white mb-6 tracking-tight"
+                  className="text-xl md:text-3xl lg:text-5xl font-bold text-white"
                 >
                   Our Mission
                 </h2>
                 <div
-                  className="w-32 h-1 bg-yellow-500 mx-auto rounded-full"
+                  className="w-32 h-1 mt-2 bg-primary mx-auto rounded-full"
                   data-aos="zoom-in"
                 ></div>
               </div>
@@ -87,7 +87,7 @@ const AboutUs = () => {
               <div className="relative z-10 text-xs md:text-base lg:text-xl text-gray-300 leading-relaxed space-y-8 mt-10">
                 <p data-aos="fade-up" className="px-4">
                   At{" "}
-                  <span className="text-yellow-500 font-bold">
+                  <span className="text-primary/80 font-bold">
                     Artifact Hub
                   </span>
                   , our mission is to connect people with history by showcasing
@@ -121,20 +121,20 @@ const AboutUs = () => {
                 <div className="mb-10">
                   <h2
                     data-aos="fade-left"
-                    className="text-xl md:text-3xl lg:text-5xl font-extrabold text-yellow-800 leading-tight"
+                    className="text-xl md:text-3xl lg:text-5xl font-extrabold text-primary leading-tight"
                   >
                     Our Story
                   </h2>
                   <div
                     data-aos="zoom-in"
-                    className="w-24 h-1 bg-yellow-500 mx-auto md:mx-0 rounded-full"
+                    className="w-36 mt-2 h-1 bg-primary mx-auto md:mx-0 rounded-full"
                   ></div>
                 </div>
 
                 <div className="space-y-6 text-xs md:text-base lg:text-xl leading-relaxed">
                   <p data-aos="fade-up" className="px-2 md:px-0">
                     At{" "}
-                    <span className="font-bold text-yellow-700">
+                    <span className="font-bold text-primary/80">
                       Artifact Hub
                     </span>
                     , we envisioned a world where history connects us all. By
@@ -159,7 +159,7 @@ const AboutUs = () => {
                   data-aos="fade-up"
                   className="mt-10 flex justify-center md:justify-start"
                 >
-                  <button className="px-8 py-3 bg-yellow-600 hover:bg-yellow-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105 focus:ring-4 focus:ring-yellow-400 focus:ring-opacity-50">
+                  <button className="px-8 py-3 bg-primary/80 hover:bg-primary text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105 focus:ring-4 focus:ring-yellow-400 focus:ring-opacity-50">
                     Explore Our Journey
                   </button>
                 </div>
@@ -213,7 +213,7 @@ const AboutUs = () => {
                 <img
                   src={sponsor1}
                   alt="Partner Logo"
-                  className="mx-auto object-contain rounded-xl"
+                  className="mx-auto object-contain rounded-xl border-4 border-primary"
                 />
               </div>
 
@@ -224,7 +224,7 @@ const AboutUs = () => {
                 <img
                   src={sponsor2}
                   alt="Partner Logo"
-                  className="mx-auto object-contain rounded-xl"
+                  className="mx-auto object-contain rounded-xl border-4 border-primary"
                 />
               </div>
 
@@ -235,7 +235,7 @@ const AboutUs = () => {
                 <img
                   src={sponsor3}
                   alt="Sponsor Logo"
-                  className="mx-auto object-contain rounded-xl"
+                  className="mx-auto object-contain rounded-xl border-4 border-primary"
                 />
               </div>
 
@@ -246,7 +246,7 @@ const AboutUs = () => {
                 <img
                   src={sponsor4}
                   alt="Sponsor Logo"
-                  className="mx-auto object-contain rounded-xl"
+                  className="mx-auto object-contain rounded-xl border-4 border-primary"
                 />
               </div>
             </div>
@@ -372,11 +372,10 @@ const AboutUs = () => {
                 data-aos-delay="300"
                 className="text-center font-serif text-2xl md:text-3xl lg:text-4xl text-white mb-5 md:mb-8 lg:mb-12"
               >
-                Join the <span className="text-yellow-600">Artifact Hub</span>{" "}
+                Join the <span className="text-primary">Artifact Hub</span>{" "}
                 Community
               </h1>
 
-              {/* Input & Button Layout */}
               <div
                 data-aos="zoom-in"
                 className="space-x-4 md:space-x-6 flex flex-col md:flex-row items-center justify-center mx-auto text-center md:text-left"
@@ -386,7 +385,7 @@ const AboutUs = () => {
                   placeholder="Enter your email"
                   className="block w-4/5 lg:w-2/5 xl:w-1/3 bg-white font-semibold px-4 py-2 pl-8 rounded-lg shadow-lg focus:outline-none"
                 />
-                <button className="mt-2 md:mt-0 bg-transparent border-2 border-white text-white hover:bg-white hover:text-black transition-all border-opacity-50 px-4 py-[4px] rounded-lg font-semibold text-lg shadow-lg">
+                <button className="mt-2 md:mt-0 bg-transparent border-2 border-white text-white hover:bg-primary transition-all border-opacity-50 px-4 py-[4px] rounded-lg font-semibold text-lg shadow-lg">
                   Subscribe
                 </button>
               </div>

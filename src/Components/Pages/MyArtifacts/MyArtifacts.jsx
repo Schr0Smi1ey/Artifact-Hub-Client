@@ -80,13 +80,6 @@ const MyArtifacts = () => {
     }
   };
   useEffect(() => {
-    axiosSecure(`/MyArtifactCount?addedBy=${user?.email}`)
-      .then((res) => {
-        setNumberOfArtifacts(res.data.count);
-      })
-      .catch((error) => Toast(error.message, "error"));
-  });
-  useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 500 });
   }, [artifacts]);
@@ -94,20 +87,29 @@ const MyArtifacts = () => {
     customAxios;
   });
   useEffect(() => {
+    const queryParam = searchTerm ? `&search=${searchTerm}` : "";
     axiosSecure
       .get(
         `/MyArtifacts?addedBy=${user?.email}&page=${
           currentPage - 1
-        }&size=${artifactsPerPage}`
+        }&size=${artifactsPerPage}&${queryParam}`
       )
-      .then((res) => setArtifacts(res.data))
+      .then((res) => {
+        setArtifacts(res.data.artifacts);
+        setNumberOfArtifacts(artifacts.length);
+      })
       .catch((error) => Toast(error.message, "error"))
       .finally(() => setLoading(false));
-  }, [Toast, user?.email, axiosSecure, updated, currentPage, artifactsPerPage]);
-
-  let filteredArtifacts = artifacts.filter((artifact) =>
-    artifact.artifactName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  }, [
+    Toast,
+    user?.email,
+    axiosSecure,
+    updated,
+    currentPage,
+    artifactsPerPage,
+    searchTerm,
+    artifacts.length,
+  ]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -231,14 +233,10 @@ const MyArtifacts = () => {
                 <p className="text-5xl text-center font-bold text-red-500 mt-5">
                   You have not added any artifacts yet.
                 </p>
-              ) : filteredArtifacts.length === 0 ? (
-                <p className="text-5xl text-center font-bold text-red-500 mt-5">
-                  No artifacts found for this name.
-                </p>
               ) : (
                 <div>
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                    {filteredArtifacts.map((artifact, index) => (
+                    {artifacts.map((artifact, index) => (
                       <div
                         key={index}
                         className={`flex ${
