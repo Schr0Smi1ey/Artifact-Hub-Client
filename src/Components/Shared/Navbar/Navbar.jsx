@@ -140,18 +140,22 @@ const NavBar = () => {
                 </h3>
               </li>
               <li className="hover:bg-gradient-to-t hover:from-primary/20 hover:to-primary/10">
-                <NavLink onClick={toggleMenuDropdown} to={"/my-artifact"}>
-                  <span className="justify-between flex font-bold text-base w-fit">
-                    My Artifacts
-                  </span>
-                </NavLink>
+                <div className="my-1">
+                  <NavLink onClick={toggleMenuDropdown} to={"/my-artifact"}>
+                    <span className="justify-between flex font-bold text-base w-fit">
+                      My Artifacts
+                    </span>
+                  </NavLink>
+                </div>
               </li>
               <li className="hover:bg-gradient-to-t hover:from-primary/20 hover:to-primary/10">
-                <NavLink onClick={toggleMenuDropdown} to="/my-liked-artifact">
-                  <span className="justify-between flex font-bold text-base w-fit">
-                    Liked Artifacts
-                  </span>
-                </NavLink>
+                <div>
+                  <NavLink onClick={toggleMenuDropdown} to="/my-liked-artifact">
+                    <span className="justify-between flex font-bold text-base w-fit">
+                      Liked Artifacts
+                    </span>
+                  </NavLink>
+                </div>
               </li>
               <li className="font-semibold text-xl text-red-600 hover:bg-gradient-to-t hover:from-primary/20 hover:to-primary/10">
                 <Link onClick={showSignOutModal}>Logout</Link>
@@ -187,7 +191,7 @@ const NavBar = () => {
   );
   return (
     <div
-      className={`navbar shadow-md rounded-b-md container mx-auto center z-[70] w-[98%] sm:w-full md:w-[96%] py-3 px-3 md:py-4 md:px-5 flex justify-between items-center my-4 fixed top-0 left-[49.8%] sm:left-[50.7%] md:left-[50.7%] lg:left-1/2 xl:left-[50.1%]  transform -translate-x-1/2 transition-all duration-500 -translate-y-4 ${
+      className={`navbar shadow-md rounded-b-md container mx-auto center z-[70] w-[98%] sm:w-full md:w-[96%] py-2 px-3 md:py-3 md:px-5 flex justify-between items-center my-4 fixed top-0 left-[49.8%] sm:left-[50.7%] md:left-[50.7%] lg:left-1/2 xl:left-[50.1%]  transform -translate-x-1/2 transition-all duration-500 -translate-y-4 ${
         scroll ? "bg-primary mt-4 rounded-b-2xl" : "bg-white"
       }`}
     >
