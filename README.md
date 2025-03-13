@@ -6,7 +6,7 @@ The **Artifact Hub** is an interactive platform designed to catalog and explore 
 
 ## 🚀 Live Demo
 
-[Live Website](https://historical-artifacts-tracker.web.app/)
+[Live Website](https://artifacts-hub-schr0smi1ey.web.app/)
 
 ---
 
