@@ -61,22 +61,10 @@ const Footer = () => {
                 My Artifacts
               </Link>
               <Link
-                to="/about"
+                to="/about-us"
                 className="text-sm hover:text-primary transition-colors"
               >
                 About Us
-              </Link>
-              <Link
-                to="/contact"
-                className="text-sm hover:text-primary transition-colors"
-              >
-                Contact Us
-              </Link>
-              <Link
-                to="/privacy-policy"
-                className="text-sm hover:text-primary transition-colors"
-              >
-                Privacy Policy
               </Link>
             </div>
           </div>
@@ -99,33 +87,37 @@ const Footer = () => {
             <h4 className="text-xl font-bold mb-4">Follow Us</h4>
             <div className="flex justify-center md:justify-end gap-4">
               <a
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/share/19zK3X1Ro6/"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-aos="zoom-in"
                 className="text-2xl hover:text-primary transition-colors"
               >
                 <FaFacebookF />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://twitter.com/sarafat_karim"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-aos="zoom-in"
                 className="text-2xl hover:text-primary transition-colors"
               >
                 <FaTwitter />
               </a>
               <a
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/sarafat.karim?igsh=MWtzMmt1azlxZWw3MQ=="
                 target="_blank"
                 rel="noopener noreferrer"
+                data-aos="zoom-in"
                 className="text-2xl hover:text-primary transition-colors"
               >
                 <FaInstagram />
               </a>
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/in/sarafat-karim"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-aos="zoom-in"
                 className="text-2xl hover:text-primary transition-colors"
               >
                 <FaLinkedinIn />
